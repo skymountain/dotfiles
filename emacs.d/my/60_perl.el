@@ -5,14 +5,25 @@
        (setcdr p 'cperl-mode)))
  (append auto-mode-alist interpreter-mode-alist))
 
-(require 'perl-find-library)
+
+; turn off displaying spaces as underlines
+(custom-set-variables
+ '(cperl-invalid-face nil)
+ )
+
 (add-hook 'cperl-mode-hook
           (lambda ()
-	    (define-global-keybinds cperl-mode-map)
-	    (define-keybinds cperl-mode-map
-	      '(("C-c C-h" perldoc)
-		))
-	    ))
+            (defvar plcmp-use-keymap nil)
+            (require 'perl-completion)
+            (define-global-keybinds cperl-mode-map)
+            (perl-completion-mode t)
+            (add-to-list 'ac-sources 'ac-source-perl-completion)
+            (define-keybinds cperl-mode-map
+              '(("C-c C-h" plcmp-cmd-show-doc)
+                ("C-c h"   plcmp-cmd-show-doc-at-point)
+                ("C-o"     plcmp-cmd-smart-complete)
+                ))
+            ))
 
 ; flymake for perl
 ; http://svn.coderepos.org/share/lang/elisp/set-perl5lib/set-perl5lib.el
@@ -75,9 +86,3 @@
                 ("C-c \"" insert-double-quotation-region)
                 ))
             ))
-
-; turn off displaying spaces as underlines
-(custom-set-variables
-  '(cperl-invalid-face nil)
-  )
-
