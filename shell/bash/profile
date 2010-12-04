@@ -1,0 +1,20 @@
+# change keybindings
+xmodmap=$DOTDIR/misc/xmodmap
+if [ \( -n "$DISPLAY" \) -a \( -e $xmodmap \) ]; then
+  (xmodmap $xmodmap)
+fi
+
+# enviroment variables
+## PATH
+export PATH=$DOTDIR/script:$PATH
+export PATH=$TOOLDIR/bin:$PATH
+export PERLBREW_ROOT=$TOOLDIR/perlbrew
+
+## editor
+export EDITOR='emacs'
+
+# read a local profile file.
+local=$DOTDIR/shell/bash/profile.local
+if [ -e $local ]; then
+  . $local
+fi

@@ -1,0 +1,43 @@
+if [ -x /usr/bin/dircolors ]; then
+  eval "`dircolors -b`"
+  alias ls='ls -F --color=auto'
+  alias dir='dir --color=auto'
+  alias vdir='vdir --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
+
+alias ll='ls -l'
+alias la='ls -A'
+alias lla='ls -lA'
+alias term='gnome-terminal'
+alias ff='firefox&'
+alias unison='unison.sh'
+alias p='cd ../'
+alias su='su -l'
+alias topcoder='javaws $TOOLDIR/topcoder/ContestAppletProd.jnlp'
+alias tcoder='javaws $TOOLDIR/topcoder/ContestAppletProd.jnlp'
+alias e='$DOTDIR/script/emacs.sh&'
+
+# git
+alias ga='git add'
+alias gb='git branch'
+alias gc='git commit'
+alias gd='git diff --color'
+alias gp='git push'
+alias gch='git checkout'
+alias gst='git status'
+alias gstash='git stash'
+
+# local aliases
+local=$DOTDIR/shell/aliases.local
+if [ -e $local ]; then
+  . "$local"
+fi
+
+# ssh
+ssh=$DOTDIR/shell/ssh.local
+if [ -e $ssh ]; then
+  . "$ssh"
+fi

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ssh io nc $1 $2

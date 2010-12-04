@@ -1,0 +1,15 @@
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp"))
+(let ((default-directory (expand-file-name "~/.emacs.d/site-lisp")))
+  (normal-top-level-add-subdirs-to-load-path))
+
+(require 'init-loader)
+(defalias 'init-loader-re-load (lambda (re dir &optional sort)
+  (let ((load-path (cons dir load-path)))
+    (dolist (el (init-loader--re-load-files re dir sort))
+      (let ((time (car (benchmark-run (load (file-name-sans-extension el))))))
+        (init-loader-log (format "loaded %s. %s" (locate-library el) time)))))))
+(setq init-loader-show-log-after-init 1)
+(custom-set-variables
+  '(init-loader-default-regexp "\\(?:^[[:digit:]]\\{2\\}\\).*\\.elc?$")
+  )
+(init-loader-load (expand-file-name "~/.emacs.d/my"))

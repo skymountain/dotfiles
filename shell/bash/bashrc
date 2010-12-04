@@ -1,0 +1,16 @@
+case "$TERM" in
+screen)
+  PROMPT_COMMAND='echo -ne "\033k\033\\"'
+  ;;
+esac
+
+# Aliases
+aliases=$DOTDIR/shell/aliases
+if [ -f $aliases ]; then
+   . $aliases
+fi
+
+perlbrew=$PERLBREW_ROOT/etc/bashrc
+if [ -f $perlbrew ]; then
+  . $perlbrew
+fi

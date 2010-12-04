@@ -1,0 +1,18 @@
+# general
+*~
+*.o
+*.opt
+*.bak
+\#*\#
+
+# OMake
+*.omc
+*.omakedb*
+
+# OCaml
+*.cmi
+*.cmx
+*.cmo
+*.spit
+*.spot
+*.annot

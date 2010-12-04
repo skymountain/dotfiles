@@ -1,0 +1,51 @@
+nethack         on
+startup_message off
+deflogin        on
+autodetach      on
+defutf8         on
+escape          ^z^z
+vbell           on
+vbell_msg       "   Wuff  ----  Wuff!!  "
+defscrollback   10000
+multiuser       on
+addacl          $USER
+
+# Remove some stupid / dangerous key bindings
+bind o focus
+bind c clear
+bind q only
+bind s split
+bind l lockscreen
+bind k remove
+
+bind ^k
+bind L
+bind ^\
+#bind ^B eval "hardcopy_append off" "hardcopy -h $HOME/.screen-urlview" "screen urlview $HOME/.screen-urlview"
+
+markkeys ^h=^j:l=^f:^u=^v:^d=^V
+markkeys ^a=^s
+
+shelltitle "$ |$ "
+hardstatus on
+hardstatus alwayslastline "%-w%{= BW}%n %t%{-}%+w %=%m/%d/%Y %c"
+# hardstatus alwayslastline "%-w%{= BW}%n %t%{-}%+w%=%m/%d/%Y:%c%" bug ??
+caption always "%?%F%{= WK}%:%{= KW}%?%3n %t"
+
+# set these terminals up to be 'optimal' instead of vt100
+termcapinfo xterm*|linux*|rxvt*|Eterm* OP
+
+# ------------------------------------------------------------------------------
+# STARTUP SCREENS
+# ------------------------------------------------------------------------------
+
+# Example of automatically running some programs in windows on screen startup.
+#
+#   The following will open top in the first window, an ssh session to monkey
+#   in the next window, and then open mutt and tail in windows 8 and 9
+#   respectively.
+#
+# screen top
+# screen -t monkey ssh monkey
+# screen -t mail 8 mutt
+# screen -t daemon 9 tail -f /var/log/daemon.log
