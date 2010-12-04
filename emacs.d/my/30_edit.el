@@ -32,9 +32,7 @@
 (custom-set-variables
   '(auto-insert-directory (expand-file-name "~/.emacs.d/conf/auto-insert"))
   )
-; 
-; 
-; A
+
 (defvar auto-insert-replacement-list ()
 "Replacement is a list of the following format:
 
