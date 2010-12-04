@@ -1,1 +1,19 @@
+/dict/
+/fonts/
+/unison/
+*.local
+
+# emacs.d
 *.elc
+99_local.el
+/emacs.d/.org-id-locations
+/emacs.d/ac-comphist.dat
+/emacs.d/anything-c-adaptive-history
+/emacs.d/conf/auto-complete
+/emacs.d/conf/cmigemo
+/emacs.d/conf/sdic
+/emacs.d/site-lisp
+/emacs.d/tramp
+
+# script
+/script/git-publish-branch
