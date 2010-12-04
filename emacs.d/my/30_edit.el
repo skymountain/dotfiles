@@ -32,8 +32,18 @@
 (custom-set-variables
   '(auto-insert-directory (expand-file-name "~/.emacs.d/conf/auto-insert"))
   )
-(defvar auto-insert-replacement-list ())
+; 
+; 
+; A
+(defvar auto-insert-replacement-list ()
+"Replacement is a list of the following format:
+
+(STRING REPLACE)
+
+Strings matched with STRING in template file are replaced by REPLACE, which is string or function which return string.")
+
 (defun auto-insert-dynamically ()
+  "skelton function for auto-insert"
   (let ((replacement (foldl (lambda (acc x) (cond (acc acc)
                                              ((string-match (car x) buffer-file-name) (cdr x))
                                              (t acc)))
@@ -51,10 +61,11 @@
            ))
        replacement))))
 
-(defun auto-insert-register (r action &optional replacement)
+(defun auto-insert-register (regexp action &optional replacement)
+  "Add ACTION to auto-insert-alist and REPLACEMENT to auto-insert-replacement-list for REGEXP."
   (add-to-list 'auto-insert-alist
-               (cons r action))
-  (when replacement (add-to-list 'auto-insert-replacement-list (cons r replacement))))
+               (cons regexp action))
+  (when replacement (add-to-list 'auto-insert-replacement-list (cons regexp replacement))))
   
   
 ; auto insert brackets
