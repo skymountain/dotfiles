@@ -3,13 +3,13 @@
   (normal-top-level-add-subdirs-to-load-path))
 
 (require 'init-loader)
-(defalias 'init-loader-re-load (lambda (re dir &optional sort)
-  (let ((load-path (cons dir load-path)))
-    (dolist (el (init-loader--re-load-files re dir sort))
-      (let ((time (car (benchmark-run (load (file-name-sans-extension el))))))
-        (init-loader-log (format "loaded %s. %s" (locate-library el) time)))))))
-(setq init-loader-show-log-after-init 1)
+
 (custom-set-variables
+  '(init-loader-show-log-after-init nil)
   '(init-loader-default-regexp "\\(?:^[[:digit:]]\\{2\\}\\).*\\.elc?$")
   )
+(defadvice init-loader-error-log (before enable-showing-init-loader-error-log activate)
+  (custom-set-variables
+    '(init-loader-show-log-after-init t)
+    ))
 (init-loader-load (expand-file-name "~/.emacs.d/my"))
