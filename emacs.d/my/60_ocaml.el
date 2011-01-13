@@ -17,31 +17,32 @@
 (add-to-list 'ac-modes 'tuareg-mode)
 (add-hook 'tuareg-mode-hook
           (lambda ()
-	    (define-keybinds current-local-map
-	      '(("C-c C-s" shell-pop)
-		("C-c e"   next-error)
+            (define-keybinds current-local-map
+              '(("C-c C-s" shell-pop)
+                ("C-c e"   next-error)
 
                 ; ocamlspot
-		("C-c ;"   ocamlspot-query)
-		("C-c :"   ocamlspot-query-interface)
-		("C-c C-t" ocamlspot-type)
-		("C-c C-y" ocamlspot-type-and-copy)
-		("C-c C-u" ocamlspot-use)
-		("C-c t"   caml-types-show-type)
-		))
-
-	    (set-face-background 'ocamlspot-spot-face "#660000")
-	    (set-face-background 'ocamlspot-tree-face "#006600")
-	    ))
+                ("C-c ;"   ocamlspot-query)
+                ("C-c :"   ocamlspot-query-interface)
+                ("C-c C-t" ocamlspot-type)
+                ("C-c C-y" ocamlspot-type-and-copy)
+                ("C-c C-u" ocamlspot-use)
+                ("C-c t"   caml-types-show-type)
+                ))
+            (if (boundp 'ocamlspot-spot-face)
+                (set-face-background 'ocamlspot-spot-face "#660000"))
+            (if (boundp 'ocamlspot-tree-face)
+                (set-face-background 'ocamlspot-tree-face "#006600"))
+            ))
 
 (add-hook 'tuareg-interactive-mode-hook
           (lambda ()
-	    (define-keybinds current-local-map
-	      '(("C-j"     backward-char)
-		("M-j"     backward-word)
-		("C-c C-s" shell-pop)
-		))
-	    ))
+            (define-keybinds current-local-map
+              '(("C-j"     backward-char)
+                ("M-j"     backward-word)
+                ("C-c C-s" shell-pop)
+                ))
+            ))
 
 ; flymake for ocaml
 (defun flymake-ocaml-init ()
