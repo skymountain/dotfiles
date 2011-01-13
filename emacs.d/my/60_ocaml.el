@@ -62,7 +62,7 @@
 
 (add-hook 'tuareg-mode-hook
           (lambda ()
-	    (if (not (null buffer-file-name)) (flymake-mode))
-	    ;; (local-set-key (kbd "C-c d") 'flymake-display-err-minibuf)
-	    ))
-
+            (if (not (null buffer-file-name)) (flymake-mode))
+            (define-keybinds current-local-map
+              '(("C-c d" 'flymake-display-err-minibuf)))
+            ))
