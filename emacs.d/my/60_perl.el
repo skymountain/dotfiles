@@ -27,7 +27,17 @@
 
 ; flymake for perl
 ; http://svn.coderepos.org/share/lang/elisp/set-perl5lib/set-perl5lib.el
+;; library path
 (require 'set-perl5lib)
+(defadvice perllib-check-path (after perllib-check-modules-path (lst lib-path) activate)
+  (let ((dir (car lst)))
+    (when (string= dir "modules")
+      (let* ((path-dir (concat lib-path "/" dir "/"))
+             (modules (filter 'file-directory-p
+                              (mapcar (lambda (entry) (concat path-dir entry "/lib")) (directory-files path-dir)))))
+        (mapc (lambda (module) (message module) (setenv "PERL5LIB" (concat module ":" (getenv "PERL5LIB")))) modules)))))
+
+;; flymake
 (defvar flymake-perl-err-line-patterns '(("\\(.*\\) at \\([^ \n]+\\) line \\([0-9]+\\)[,.\n]" 2 3 nil 1)))
 (defconst flymake-allowed-perl-file-name-masks '(("\\.pl$" flymake-perl-init)
                                                  ("\\.pm$" flymake-perl-init)
