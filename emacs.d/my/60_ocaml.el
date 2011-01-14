@@ -66,3 +66,12 @@
             (define-keybinds current-local-map
               '(("C-c d" 'flymake-display-err-minibuf)))
             ))
+
+(add-moccur-exclusion-mask
+ '("\\.spit$"
+   "\\.spot$"
+   "\\.annot$"
+   "\\.cmi$"
+   "\\.cmo$"
+   "\\.cmx$"
+   ))

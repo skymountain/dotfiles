@@ -5,3 +5,7 @@
     ("M-o" omake-round-visit-buffer)
     ("M-O" omake-run)
     ))
+
+(add-moccur-exclusion-mask
+ '("\\.omc$"
+   ))
