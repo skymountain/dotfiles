@@ -1,6 +1,6 @@
 ; This theme is a mixture of charcoal-black and dark-laptop
 ; and is based on charcoal-black.
-(eval-when-compile    (require 'color-theme))
+(require 'color-theme)
 (defun my-color-theme ()
   "Color theme by Taro Sekiyama, created 2010-06-24."
   (interactive)
@@ -168,6 +168,7 @@
      (anything-file-name ((t (:foreground "white"))))
      (anything-dir-priv ((t (:background "Gray15" :foreground "SteelBlue1"))))
      (paren-face-match ((t (:bold t :background "Gray20"))))
+     (flymake-errline ((t (:background "color-88"))))
      )))
 (add-to-list 'color-themes '(my-color-theme  "THEME NAME" "YOUR NAME"))
 
