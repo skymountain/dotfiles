@@ -4,3 +4,11 @@ install:
       to:   $HOME/.aspell.conf
     - from: keysnail.js
       to:   $HOME/.keysnail.js
+  prototype:
+    - from: xmodmap.prototype
+      to:   $HOME/.xmodmap
+      replace:
+        - "%ALT_L_KEYCODE%"
+        - "%CTRL_R_KEYCODE%"
+        - "%CTRL_L_KEYCODE%"
+        - "%UNDESCORE_KEYCODE%"
