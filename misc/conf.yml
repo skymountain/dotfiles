@@ -1,0 +1,6 @@
+install:
+  symlink:
+    - from: aspell.conf
+      to:   $HOME/.aspell.conf
+    - from: keysnail.js
+      to:   $HOME/.keysnail.js
