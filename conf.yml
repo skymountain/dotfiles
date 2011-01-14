@@ -1,0 +1,17 @@
+install:
+  subdir:
+    # - emacs.d
+    - git
+    # - misc
+    - screen
+    # - shell
+
+  symlink:
+    - from: dict
+      to:   $HOME/.dict
+    - from: fonts
+      to:   $HOME/.fonts
+    - from: emacs.d
+      to:   $HOME/.emacs.d
+    - from: unison
+      to:   $HOME/.unison

@@ -1,0 +1,4 @@
+install:
+  symlink:
+    - from: screenrc
+      to:   $HOME/.screenrc
