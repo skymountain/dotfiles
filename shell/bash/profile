@@ -11,7 +11,7 @@ export PATH=$TOOLDIR/bin:$PATH
 export PERLBREW_ROOT=$TOOLDIR/perlbrew
 
 ## editor
-export EDITOR='emacs'
+export EDITOR='`"$EMACS"`'
 export PAGER='less -R'
 
 # read a local profile file.
