@@ -22,3 +22,15 @@
                     (symbol-value symbol)
                     ())))
     (custom-set-variables (list symbol '(append preseq seq) t))))
+
+; function group
+(defun add-function-to-group (symbol func)
+  (let* ((tmp-list (get symbol 'function-group-list)))
+    (put symbol 'function-group-list (add-to-list 'tmp-list func))))
+
+(defun call-function-in-group (symbol arg &rest white-symbols)
+  (let ((func-symbol-list (get symbol 'function-group-list)))
+    (when white-symbols
+      (setq func-symbol-list (filter (lambda (sym) (member sym white-symbols)) func-symbol-list)))
+    (dolist (func func-symbol-list)
+      (funcall func arg))))

@@ -85,3 +85,5 @@ Strings matched with STRING in template file are replaced by REPLACE, which is s
 
 (defun add-moccur-exclusion-mask (masks)
   (custom-set-list 'dmoccur-exclusion-mask masks))
+
+(add-function-to-group 'ignore-files-by-regexp-list 'add-moccur-exclusion-mask)

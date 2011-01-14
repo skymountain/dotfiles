@@ -67,11 +67,11 @@
               '(("C-c d" 'flymake-display-err-minibuf)))
             ))
 
-(add-moccur-exclusion-mask
- '("\\.spit$"
-   "\\.spot$"
-   "\\.annot$"
-   "\\.cmi$"
-   "\\.cmo$"
-   "\\.cmx$"
-   ))
+(call-function-in-group 'ignore-files-by-regexp-list
+                        '("\\.spit$"
+                          "\\.spot$"
+                          "\\.annot$"
+                          "\\.cmi$"
+                          "\\.cmo$"
+                          "\\.cmx$"
+                          ))

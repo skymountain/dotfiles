@@ -6,6 +6,5 @@
     ("M-O" omake-run)
     ))
 
-(add-moccur-exclusion-mask
- '("\\.omc$"
-   ))
+(call-function-in-group 'ignore-files-by-regexp-list
+                        "\\.omc$")

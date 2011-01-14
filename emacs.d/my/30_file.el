@@ -24,3 +24,7 @@
 (custom-set-variables
   '(ido-enable-flex-matching t)
   )
+
+(defun add-ido-ignore-files (files)
+  (custom-set-list 'ido-ignore-files files))
+(add-function-to-group 'ignore-files-by-regexp-list 'add-ido-ignore-files)
