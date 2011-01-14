@@ -14,3 +14,10 @@
   (let ((idx (string-match r s offset)))
     (and idx
          (or (string-match-last r s (1+ idx)) idx))))
+
+(defun custom-set-list (symbol seq)
+  (let ((seq (if (consp seq) seq (cons seq nil)))
+        (preseq (if (boundp symbol)
+                    (symbol-value symbol)
+                    ())))
+    (custom-set-variables (list symbol '(append preseq seq) t))))

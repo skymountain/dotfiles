@@ -84,9 +84,4 @@ Strings matched with STRING in template file are replaced by REPLACE, which is s
  )
 
 (defun add-moccur-exclusion-mask (masks)
-  (let ((masks (if (consp masks) masks (cons masks nil)))
-        (exclusion-masks (if (boundp 'dmoccur-exclusion-mask)
-                             dmoccur-exclusion-mask
-                             ())))
-    (custom-set-variables
-     '(dmoccur-exclusion-mask (append exclusion-masks masks) t))))
+  (custom-set-list 'dmoccur-exclusion-mask masks))
