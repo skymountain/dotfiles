@@ -1,0 +1,6 @@
+[submodule "modules/configure"]
+	path = modules/configure
+	url = git@github.com:skymountain/Configure.git
+[submodule "repos/configure"]
+	path = repos/configure
+	url = git@github.com:skymountain/Configure.git
