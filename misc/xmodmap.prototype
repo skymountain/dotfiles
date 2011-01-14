@@ -1,11 +1,11 @@
-keycode 102 = Meta_L Alt_L
+keycode %ALT_L_KEYCODE% = Meta_L Alt_L
 add mod1 = Meta_L Alt_L
 
-keycode 100 = Control_R
+keycode %CTRL_R_KEYCODE% = Control_R
 add control = Control_R
 
 remove lock = Caps_Lock
-keycode 66 = Control_L
+keycode %CTRL_L_KEYCODE% = Control_L
 add control = Control_L
 
-keycode 97 = underscore backslash underscore backslash underscore backslash
+keycode %UNDESCORE_KEYCODE% = underscore backslash underscore backslash underscore backslash
