@@ -169,6 +169,7 @@
      (anything-dir-priv ((t (:background "Gray15" :foreground "SteelBlue1"))))
      (paren-face-match ((t (:bold t :background "Gray20"))))
      (flymake-errline ((t (:background "color-88"))))
+     (flymake-warnline ((t (:background "color-130"))))
      )))
 (add-to-list 'color-themes '(my-color-theme  "THEME NAME" "YOUR NAME"))
 
