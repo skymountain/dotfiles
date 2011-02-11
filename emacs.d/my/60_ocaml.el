@@ -17,7 +17,7 @@
 (add-to-list 'ac-modes 'tuareg-mode)
 (add-hook 'tuareg-mode-hook
           (lambda ()
-            (define-keybinds current-local-map
+            (define-keybinds tuareg-mode-map
               '(("C-c C-s" shell-pop)
                 ("C-c e"   next-error)
 
@@ -37,7 +37,7 @@
 
 (add-hook 'tuareg-interactive-mode-hook
           (lambda ()
-            (define-keybinds current-local-map
+            (define-keybinds tuareg-interactive-mode-map
               '(("C-j"     backward-char)
                 ("M-j"     backward-word)
                 ("C-c C-s" shell-pop)
