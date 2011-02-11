@@ -15,6 +15,31 @@
     (and idx
          (or (string-match-last r s (1+ idx)) idx))))
 
+(defun join (separator sequence)
+  (mapconcat 'identity sequence separator))
+
+(defun uniq (sequence)
+  (let ((ret nil))
+    (dolist (x sequence (reverse ret))
+      (unless (member x ret)
+        (add-to-list 'ret x)))))
+
+(defun split-to-pair (r s &optional match)
+  (let* ((f (or match 'string-match))
+         (idx (funcall f r s)))
+    (when idx
+      (let ((fst (if (= idx 0) "" (substring s 0 idx)))
+            (snd (substring s (1+ idx) (length s))))
+        (cons fst snd)))))
+
+(defun split (r s)
+  (let ((iter (lambda (s)
+                (let ((p (split-to-pair r s)))
+                  (cond (p (cons (car p)
+                                 (funcall iter (cdr p))))
+                        (t (list s)))))))
+    (funcall iter s)))
+
 ; custom
 (defun custom-set-list (symbol seq)
   (let ((seq (if (listp seq) seq (cons seq nil)))

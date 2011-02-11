@@ -25,19 +25,36 @@
                 ))
             ))
 
-; flymake for perl
-; http://svn.coderepos.org/share/lang/elisp/set-perl5lib/set-perl5lib.el
-;; library path
-(require 'set-perl5lib)
-(defadvice perllib-check-path (after perllib-check-modules-path (lst lib-path) activate)
-  (let ((dir (car lst)))
-    (when (string= dir "modules")
-      (let* ((path-dir (concat lib-path "/" dir "/"))
-             (modules (filter 'file-directory-p
-                              (mapcar (lambda (entry) (concat path-dir entry "/lib")) (directory-files path-dir)))))
-        (mapc (lambda (module) (message module) (setenv "PERL5LIB" (concat module ":" (getenv "PERL5LIB")))) modules)))))
+; env variable for perl
+(defun get-perllib-module-path-list (modules-dir)
+  (cond ((file-exists-p modules-dir)
+         (mapcar (lambda (basename) (concat modules-dir "/" basename "/lib"))
+                 (filter (lambda (basename) (not (string-match "^\\.*$" basename)))
+                         (directory-files modules-dir))))
+        (t nil)))
 
-;; flymake
+(defun get-perllib-path-list (path)
+  (let ((last-idx (string-match-last "/" path)))
+    (let ((p (split-to-pair "/" path 'string-match-last)))
+      (when p
+        (let* ((dir      (car p))
+               (basename (cdr p))
+               (ms-dir   (concat dir "/modules"))
+               (libs     (append (and (not (string= dir ""))
+                                      (get-perllib-module-path-list ms-dir))
+                                 (and (string= basename "lib") (list path)))))
+        (append libs (get-perllib-path-list dir)))))))
+
+(defun set-perl-env (path)
+  (let ((libs (get-perllib-path-list path)))
+    (when libs
+      (let* ((lib-env  (or (getenv "PERL5LIB") ""))
+             (pre-libs (and (not (string= "" lib-env))
+                            (split ":" lib-env))))
+        (setenv "PERL5LIB"
+                (join ":" (uniq (append pre-libs libs))))))))
+
+; flymake for perl
 (defvar flymake-perl-err-line-patterns '(("\\(.*\\) at \\([^ \n]+\\) line \\([0-9]+\\)[,.\n]" 2 3 nil 1)))
 (defconst flymake-allowed-perl-file-name-masks '(("\\.pl$" flymake-perl-init)
                                                  ("\\.pm$" flymake-perl-init)
@@ -59,7 +76,7 @@
   (ad-activate 'flymake-post-syntax-check)
   (setq flymake-allowed-file-name-masks (append flymake-allowed-file-name-masks flymake-allowed-perl-file-name-masks))
   (setq flymake-err-line-patterns flymake-perl-err-line-patterns)
-  (set-perl5lib)
+  (set-perl-env buffer-file-name)
   (flymake-mode t))
 
 (add-hook 'cperl-mode-hook '(lambda ()
