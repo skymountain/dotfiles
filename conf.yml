@@ -1,9 +1,7 @@
 install:
   subdir:
     # - emacs.d
-    - git
-    - misc
-    - screen
+    - repos
     # - shell
 
   symlink:
@@ -15,3 +13,24 @@ install:
       to:   $HOME/.emacs.d
     - from: unison
       to:   $HOME/.unison
+    # git
+    - from: git/gitignore
+      to:   $HOME/.gitignore
+    # misc
+    - from: misc/aspell.conf
+      to:   $HOME/.aspell.conf
+    - from: misc/keysnail.js
+      to:   $HOME/.keysnail.js
+    # screen
+    - from: screen/screenrc
+      to:   $HOME/.screenrc
+
+  prototype:
+    # misc
+    - from: misc/xmodmap.prototype
+      to:   $HOME/.xmodmap
+      replace:
+        - "%ALT_L_KEYCODE%"
+        - "%CTRL_R_KEYCODE%"
+        - "%CTRL_L_KEYCODE%"
+        - "%UNDESCORE_KEYCODE%"

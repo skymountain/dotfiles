@@ -1,4 +1,0 @@
-install:
-  symlink:
-    - from: gitignore
-      to:   $HOME/.gitignore
