@@ -1,10 +1,18 @@
 ; map perl-mode to cperl-mode, which is amore advanced mode for perl.
-(mapc
- (lambda (p)
-   (if (eq (cdr p) 'perl-mode)
-       (setcdr p 'cperl-mode)))
- (append auto-mode-alist interpreter-mode-alist))
-
+(let* ((re-list '("\\.t$"))
+       (re (join "\\|" re-list))
+       (default-re "\\.\\([pP]\\([Llm]\\|erl\\|od\\)\\|al\\)\\'")
+       (re-generator (lambda (pre-re) (concat re  "\\|" pre-re)))
+       (list-sym-list '(auto-mode-alist interpreter-mode-alist))
+       (mapper (lambda (alist-sym)
+                 (let ((defined nil))
+                   (unless (dolist (p (eval alist-sym) defined)
+                             (when (eq (cdr p) 'perl-mode)
+                               (setq defined t)
+                               (setcdr p 'cperl-mode)
+                               (setcar p (funcall re-generator (car p)))))
+                     (add-to-list alist-sym (cons (re-generator default-re) 'cperl-mode)))))))
+  (mapc mapper list-sym-list))
 
 ; turn off displaying spaces as underlines
 (custom-set-variables
@@ -98,6 +106,7 @@
                       "")))
        (concat "package " module basename ";"))))
   ))
+(auto-insert-register "\\.t$" "template.t")
  
 ; auto insert brackets
 (add-hook 'cperl-mode-hook
