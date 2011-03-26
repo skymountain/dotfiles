@@ -24,6 +24,12 @@
       (unless (member x ret)
         (add-to-list 'ret x)))))
 
+(defun flatten (sequences)
+  (let ((ret nil))
+    (dolist (seq sequences (reverse ret))
+      (dolist (x seq)
+        (setq ret (cons x ret))))))
+
 (defun split-to-pair (r s &optional match)
   (let* ((f (or match 'string-match))
          (idx (funcall f r s)))
@@ -59,3 +65,64 @@
       (setq func-symbol-list (filter (lambda (sym) (member sym white-symbols)) func-symbol-list)))
     (dolist (func func-symbol-list)
       (funcall func arg))))
+
+; assoc
+(defun assoc-modify (assoc-list modifier-list)
+  (let ((assoc-add    (lambda (key value)
+                        (add-to-list 'assoc-list (cons key value))))
+        (assoc-delete (lambda (key)
+                        (setq assoc-list (assq-delete-all key assoc-list))))
+        (assoc-modify (lambda (target-key new-value)
+                        (setq assoc-list
+                              (mapcar (lambda (key-value)
+                                        (let ((key   (car key-value))
+                                              (value (cdr key-value)))
+                                          (cons key
+                                                (if (eq key target-key)
+                                                    new-value value))))
+                                      assoc-list)))))
+    (dolist (modifier-info
+             modifier-list
+             assoc-list)
+      (let ((op    (car  modifier-info))
+            (key   (cadr modifier-info))
+            (value (cddr modifier-info)))
+        (cond ((eq op 'delete) (funcall assoc-delete key))
+              ((eq op 'add)    (funcall assoc-add    key value))
+              ((eq op 'modify) (funcall assoc-modify key value)))
+        ))))
+
+;;
+;; sample code
+;;
+;; add(assoc-modify-packed
+;;     '((a 1) (b 2) (c 3) (d . 4))
+;;     '((delete a c)))
+
+;; (assoc-modify-packed
+;;  '((a 1) (b 2) (c 3) (d . 4))
+;;  '((delete (a) (c))))
+
+;; (assoc-modify-packed
+;;  '((a 1) (b 2) (c 3) (d . 4))
+;;  '((add (a 10) (e . 5))))
+
+;; (assoc-modify-packed
+;;  '((a 1) (b 2) (c 3) (d . 4))
+;;  '((modify (a 10) (e . 5))))
+;;
+(defun assoc-modify-packed (assoc-list packed-modifier-list)
+  (let ((modifier-list
+         (flatten (mapcar
+                   (lambda (packed-modifier-info)
+                     (let ((op (car packed-modifier-info))
+                           (key-maybe-value-list (cdr packed-modifier-info)))
+                       (mapcar
+                        (lambda (key-maybe-value)
+                          (cons op
+                                (if (listp key-maybe-value)
+                                    key-maybe-value
+                                    (list key-maybe-value))))
+                        key-maybe-value-list)))
+                   packed-modifier-list))))
+    (assoc-modify assoc-list modifier-list)))
