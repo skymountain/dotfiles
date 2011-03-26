@@ -24,7 +24,7 @@
      "point-undo.el"
      "color-moccur.el"
      "moccur-edit.el"
-     "auto-async-byte-compile.el"))
+     ))
   (install-elisp-list-from-url
    '("http://www.wonderworks.com/download/filladapt.el"
      "http://people.debian.org/~psg/elisp/font-latex.el"
@@ -33,11 +33,3 @@
   (install-elisp-list-by-batch
    '("auto-complete"
      "anything")))
-
-; automatic byte compile
-(require 'auto-async-byte-compile)
-(custom-set-variables
-  '(auto-async-byte-compile-exclude-files-regexp
-    (regexp-quote (expand-file-name "~/.emacs.d/init.el")))
-  )
-(add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)

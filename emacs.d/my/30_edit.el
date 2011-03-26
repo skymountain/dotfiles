@@ -89,6 +89,5 @@ Strings matched with STRING in template file are replaced by REPLACE, which is s
 (add-function-to-group 'ignore-files-by-regexp-list 'add-moccur-exclusion-mask)
 
 ; camel case move
-
 (require 'camelCase)
 (camelCase-mode 1)
