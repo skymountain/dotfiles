@@ -13,7 +13,7 @@
 (require 'camelCase)
 (camelCase-mode 1)
 
-(defun define-inherited-global-keybinds (map)
+(defun define-keybinds-defined-in-global (map)
   (let ((global-keybinds
 	 '(("C-j"     backward-char)
 	   ("M-j"     camelCase-backward-word)
@@ -27,4 +27,4 @@
 	   )))
     (define-keybinds map global-keybinds)))
 
-(define-inherited-global-keybinds global-map)
+(define-keybinds-defined-in-global global-map)
