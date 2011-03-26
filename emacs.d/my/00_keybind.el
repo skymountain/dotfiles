@@ -10,12 +10,15 @@
             (define-key map (car keybind) (cdr keybind)))
           keybinds)))
 
-(defun define-inheritated-keybinds (map)
+(require 'camelCase)
+(camelCase-mode 1)
+
+(defun define-inheritated-global-keybinds (map)
   (let ((global-keybinds
 	 '(("C-j"     backward-char)
-	   ("M-j"     backward-word)
+	   ("M-j"     camelCase-backward-word)
 	   ("C-h"     delete-backward-char)
-	   ("M-h"     backward-kill-word)
+	   ("M-h"     camelCase-backward-kill-word)
 	   ("C-c C-b" beginning-of-buffer)
 	   ("C-c C-e" end-of-buffer)
 	   ("C-x p"   (lambda () (interactive) (other-window -1)))
@@ -24,5 +27,4 @@
 	   )))
     (define-keybinds map global-keybinds)))
 
-(define-inheritated-keybinds global-map)
-
+(define-inheritated-global-keybinds global-map)
