@@ -5,7 +5,7 @@
 
 # emacs.d
 *.elc
-99_local.el
+*_local.el
 /emacs.d/.org-id-locations
 /emacs.d/ac-comphist.dat
 /emacs.d/anything-c-adaptive-history
