@@ -23,7 +23,7 @@
           (lambda ()
             (defvar plcmp-use-keymap nil)
             (require 'perl-completion)
-            (define-global-keybinds cperl-mode-map)
+            (define-inheritated-keybinds cperl-mode-map)
             (perl-completion-mode t)
             (add-to-list 'ac-sources 'ac-source-perl-completion)
             (define-keybinds cperl-mode-map

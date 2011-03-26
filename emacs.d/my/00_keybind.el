@@ -10,7 +10,7 @@
             (define-key map (car keybind) (cdr keybind)))
           keybinds)))
 
-(defun define-global-keybinds (map)
+(defun define-inheritated-keybinds (map)
   (let ((global-keybinds
 	 '(("C-j"     backward-char)
 	   ("M-j"     backward-word)
@@ -24,5 +24,5 @@
 	   )))
     (define-keybinds map global-keybinds)))
 
-(define-global-keybinds global-map)
+(define-inheritated-keybinds global-map)
 

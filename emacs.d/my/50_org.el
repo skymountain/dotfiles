@@ -19,7 +19,7 @@
 
 (add-hook 'org-load-hook
           (lambda ()
-	    (define-global-keybinds org-mode-map)
+	    (define-inheritated-keybinds org-mode-map)
 	    (define-keybinds org-mode-map
 	      '(("M-n"     outline-next-visible-heading)
 		("M-p"     outline-previous-visible-heading)
