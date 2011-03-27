@@ -16,3 +16,21 @@
   "Show a face at the point of the current cursor"
   (interactive)
   (message "%s" (get-char-property (point) 'face)))
+
+; view-mode
+(add-hook 'view-mode-hook
+          (lambda ()
+            (message "enter view mode")
+            (define-keybinds view-mode-map
+              '(("j" next-line)
+                ("k" previous-line)
+                ("h" backward-char)
+                ("l" forward-char)
+                ("b" scroll-down)
+              ))
+            ))
+
+(defun view-mode-in-major-mode (mode-hook)
+  (add-hook mode-hook (lambda ()
+                        (view-mode 1)
+                        )))
