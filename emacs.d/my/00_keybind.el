@@ -1,3 +1,4 @@
+; define keybinds
 (defun make-keybinds (keybinds)
   (mapcar
    (lambda (keybind)
@@ -27,3 +28,19 @@
 
 (defun global-keybinds-define-keybinds (map)
   (define-keybinds map global-keybinds))
+
+; prefix key
+
+;; for help command
+(define-prefix-command 'help-prefix-map)
+
+(define-keybinds global-map
+  '(("C-M-h" help-prefix-map)
+    ))
+
+(define-keybinds help-prefix-map
+  '(("f" describe-function)
+    ("v" describe-variable)
+    ("b" describe-bindings)
+    ("k" describe-key)
+    ))
