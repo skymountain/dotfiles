@@ -63,8 +63,8 @@
 (add-hook 'tuareg-mode-hook
           (lambda ()
             (if (not (null buffer-file-name)) (flymake-mode))
-            (define-keybinds current-local-map
-              '(("C-c d" 'flymake-display-err-minibuf)))
+            (define-keybinds tuareg-mode-map
+              '(("C-c d" flymake-display-err-minibuf)))
             ))
 
 (call-function-in-group 'ignore-files-by-regexp-list
