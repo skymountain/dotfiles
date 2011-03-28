@@ -20,10 +20,9 @@
 ; view-mode
 (add-hook 'view-mode-hook
           (lambda ()
-            (message "enter view mode")
             (define-keybinds view-mode-map
-              '(("j" next-line)
-                ("k" previous-line)
+              '(("j" (lambda () (interactive) (scroll-up 1)))
+                ("k" (lambda () (interactive) (scroll-down 1)))
                 ("h" backward-char)
                 ("l" forward-char)
                 ("b" scroll-down)
