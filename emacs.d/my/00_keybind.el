@@ -14,21 +14,20 @@
 (require 'camelCase)
 (camelCase-mode 1)
 
-(defvar global-keybinds
-  '(("C-j"     backward-char)
-    ("M-j"     camelCase-backward-word)
-    ("C-h"     delete-backward-char)
-    ("M-h"     camelCase-backward-kill-word)
-    ("M-f"     camelCase-forward-word)
-    ("C-c C-b" beginning-of-buffer)
-    ("C-c C-e" end-of-buffer)
-    ("C-x p"   (lambda () (interactive) (other-window -1)))
-    ("C-m"     newline-and-indent)
-    ("C-c C-j" goto-line)
-    ))
-
 (defun global-keybinds-define-keybinds (map)
-  (define-keybinds map global-keybinds))
+  (let ((global-keybinds
+         '(("C-j"     backward-char)
+           ("M-j"     camelCase-backward-word)
+           ("C-h"     delete-backward-char)
+           ("M-h"     camelCase-backward-kill-word)
+           ("M-f"     camelCase-forward-word)
+           ("C-c C-b" beginning-of-buffer)
+           ("C-c C-e" end-of-buffer)
+           ("C-x p"   (lambda () (interactive) (other-window -1)))
+           ("C-m"     newline-and-indent)
+           ("C-c C-j" goto-line)
+           )))
+    (define-keybinds map global-keybinds)))
 
 ; prefix key
 
