@@ -51,7 +51,7 @@
     (font-lock-reference-face ((t (:foreground "LightSteelBlue"))))
     (font-lock-string-face ((t (:foreground "LightSalmon"))))
     (font-lock-type-face ((t (:foreground "PaleGreen"))))
-    (font-lock-variable-name-face ((t (:foreground "color-184"))))
+    (font-lock-variable-name-face ((t (:foreground "brightyellow"))))
     (font-lock-warning-face ((t (:bold t :foreground "Pink"))))
 
     ;; add
