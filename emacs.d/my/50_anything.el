@@ -3,10 +3,13 @@
 (custom-set-variables
   '(descbinds-anything-window-style (quote split-window)))
 
-(define-keybinds anything-map
-  '(("M-n" anything-next-source)
-    ("M-p" anything-previous-source)
-    ))
+(add-hook 'anything-after-initialize-hook
+          (lambda ()
+            (global-keybinds-define-keybinds anything-map)
+            (define-keybinds anything-map
+              '(("M-n" anything-next-source)
+                ("M-p" anything-previous-source)
+                ))))
 
 (require 'anything-c-moccur)
 (define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch)
