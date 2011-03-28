@@ -41,7 +41,6 @@
     (font-lock-builtin-face ((t (:foreground "LightSteelBlue"))))
 
     ;; change
-    ;; (font-lock-comment-face ((t (:foreground "OrangeRed"))))
     (font-lock-comment-face ((t (:foreground "LightSkyBlue1"))))
     
     (font-lock-constant-face ((t (:foreground "Aquamarine"))))
@@ -52,7 +51,7 @@
     (font-lock-reference-face ((t (:foreground "LightSteelBlue"))))
     (font-lock-string-face ((t (:foreground "LightSalmon"))))
     (font-lock-type-face ((t (:foreground "PaleGreen"))))
-    (font-lock-variable-name-face ((t (:foreground "LightGoldenrod"))))
+    (font-lock-variable-name-face ((t (:foreground "color-184"))))
     (font-lock-warning-face ((t (:bold t :foreground "Pink"))))
 
     ;; add
@@ -164,8 +163,8 @@
     (anything-file-name ((t (:foreground "white"))))
     (anything-dir-priv ((t (:background "Gray15" :foreground "SteelBlue1"))))
     (paren-face-match ((t (:bold t :background "Gray20"))))
-    (flymake-errline ((t (:background "color-88"))))
-    (flymake-warnline ((t (:background "color-130"))))
+    (flymake-errline ((t (:background "color-220"))))
+    (flymake-warnline ((t (:background "color-88"))))
     ))
 
 (defun my-color-theme ()
