@@ -34,3 +34,11 @@ install:
         - "%CTRL_R_KEYCODE%"
         - "%CTRL_L_KEYCODE%"
         - "%UNDESCORE_KEYCODE%"
+    # script
+    - from: script/http-proxy.prototype
+      to:   script/http-proxy
+      permission: +x
+      replace:
+        - "%PROXY_HOST%"
+        - "%PROXY_PORT%"
+
