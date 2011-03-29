@@ -9,6 +9,7 @@ vbell_msg       "   Wuff  ----  Wuff!!  "
 defscrollback   10000
 multiuser       on
 addacl          $USER
+term            xterm-256color
 
 # Remove some stupid / dangerous key bindings
 bind o focus
@@ -26,10 +27,11 @@ bind ^\
 markkeys ^h=^j:l=^f:^u=^v:^d=^V
 markkeys ^a=^s
 
+# shell
+shell      zsh
 shelltitle "$ |$ "
 hardstatus on
 hardstatus alwayslastline "%-w%{= BW}%n %t%{-}%+w %=%m/%d/%Y %c"
-# hardstatus alwayslastline "%-w%{= BW}%n %t%{-}%+w%=%m/%d/%Y:%c%" bug ??
 caption always "%?%F%{= WK}%:%{= KW}%?%3n %t"
 
 # set these terminals up to be 'optimal' instead of vt100
