@@ -9,6 +9,7 @@
             (define-keybinds anything-map
               '(("M-n" anything-next-source)
                 ("M-p" anything-previous-source)
+                ("RET" anything-exit-minibuffer)
                 ))))
 
 (require 'anything-c-moccur)
