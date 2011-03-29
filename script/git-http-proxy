@@ -1,0 +1,3 @@
+#! /bin/sh
+GIT_PROXY_COMMAND=$DOTDIR/script/http-proxy
+git "$@"
