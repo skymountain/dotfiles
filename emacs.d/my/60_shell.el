@@ -1,5 +1,7 @@
 ; sh-script
 (setq sh-basic-offset 2)
+(add-to-list 'auto-mode-alist
+             '("^\\.?\\(bashrc\\)\\|\\(profile\\)\\|\\(zshrc\\)$" . shell-script-mode))
 
 ; shell
 (require 'shell-pop)
