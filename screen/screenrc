@@ -22,17 +22,19 @@ bind k remove
 bind ^k
 bind L
 bind ^\
-#bind ^B eval "hardcopy_append off" "hardcopy -h $HOME/.screen-urlview" "screen urlview $HOME/.screen-urlview"
 
-markkeys ^h=^j:l=^f:^u=^v:^d=^V
-markkeys ^a=^s
+markkeys h=^j
+markkeys l=^f
+markkeys ^b=b:^b=^V
+markkeys ^f=^v
+markkeys /=^s
+markkeys ?=^r
 
 # shell
 shell      zsh
-shelltitle "$ |$ "
+setenv     RUN_SCREEN 1
 hardstatus on
 hardstatus alwayslastline "%-w%{= BW}%n %t%{-}%+w %=%m/%d/%Y %c"
-caption always "%?%F%{= WK}%:%{= KW}%?%3n %t"
 
 # set these terminals up to be 'optimal' instead of vt100
 termcapinfo xterm*|linux*|rxvt*|Eterm* OP

@@ -1,6 +1,3 @@
-# initialize
-typeset -a precmds
-
 # changing directories
 setopt AUTO_CD
 setopt AUTO_PUSHD
@@ -53,20 +50,25 @@ if [ -f $perlbrew ]; then
 fi
 
 # prompt
+autoload -U add-zsh-hook
+
 function echo_prompt {
+  if [ -n $RUN_SCREEN ]; then
+    echo -ne "\ek$(print -P '%20<..<%~')\e\\";
+  fi;
+
   prompt='%n@ %30<..<%~$ ';
 }
-precmds+=echo_prompt
+add-zsh-hook precmd echo_prompt
 
-#hook
-function precmd {
-  for func in $precmds; do
-    $func
-  done
+function echo_command {
+  if [ -n $RUN_SCREEN ]; then
+    echo -ne "\\033k$argv[3]\\033\\\\";
+  fi;
 }
+add-zsh-hook preexec echo_command
 
 # git http://d.hatena.ne.jp/mollifier/20100906/p1
-autoload -Uz add-zsh-hook
 autoload -Uz colors
 colors
 autoload -Uz vcs_info
