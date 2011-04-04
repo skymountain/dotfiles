@@ -40,12 +40,12 @@ bindkey '\ej' backward-word
 
 # source
 local aliase_file=${DOTDIR}/shell/aliases
-if [ -f $aliase_file ]; then
+if [[ -f $aliase_file ]]; then
   source $aliase_file
 fi
 
 local perlbrew=${PERLBREW_ROOT}/etc/bashrc
-if [ -f $perlbrew ]; then
+if [[ -f $perlbrew ]]; then
   source $perlbrew
 fi
 
@@ -53,7 +53,7 @@ fi
 autoload -U add-zsh-hook
 
 function echo_prompt {
-  if [ -n $RUN_SCREEN ]; then
+  if [[ -n $RUN_SCREEN ]]; then
     echo -ne "\ek$(print -P '%20<..<%~')\e\\";
   fi;
 
@@ -62,7 +62,7 @@ function echo_prompt {
 add-zsh-hook precmd echo_prompt
 
 function echo_command {
-  if [ -n $RUN_SCREEN ]; then
+  if [[ -n $RUN_SCREEN ]]; then
     echo -ne "\\033k$argv[3]\\033\\\\";
   fi;
 }
