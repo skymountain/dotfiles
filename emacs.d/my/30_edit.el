@@ -30,7 +30,7 @@
 (require 'autoinsert)
 (auto-insert-mode 1)
 (custom-set-variables
-  '(auto-insert-directory (expand-file-name "~/.emacs.d/conf/auto-insert"))
+  '(auto-insert-directory (expand-file-name "~/.emacs.d/conf/template"))
   )
 
 (defvar auto-insert-replacement-list ()
