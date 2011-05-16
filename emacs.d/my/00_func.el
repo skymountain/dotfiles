@@ -148,3 +148,12 @@
                                (let ((entry (concat dir "/" entry-name)))
                                  (file-exists-p entry)))
                              entry-names))))
+
+; buffer
+(defun buffer-clear ()
+  (interactive)
+  (delete-region (point-min) (point-max)))
+
+(defun overwrite-file-contents (file-path)
+  (buffer-clear)
+  (insert-file-contents file-path))

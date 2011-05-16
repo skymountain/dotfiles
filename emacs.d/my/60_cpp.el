@@ -61,3 +61,7 @@
                 (when entries (concat "_" (join "_" entries))))))
           "FAIL")))
    ))
+
+(defun cpp-insert-test-code ()
+  (interactive)
+  (overwrite-file-contents (expand-file-name "~/.emacs.d/conf/template/test.cpp")))
