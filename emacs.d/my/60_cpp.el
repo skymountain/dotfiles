@@ -7,7 +7,10 @@
 	    (c-set-style "gnu")
 	    (setq comment-start-skip "*")
 	    (c-toggle-hungry-state 1)
-	    
+
+      (c-set-offset 'innamespace 0)
+      (c-set-offset 'arglist-close 0)
+
 	    (let ((maps '(c-mode-map c++-mode-map)))
 	      (dolist (map maps)
 		(define-keybinds map
