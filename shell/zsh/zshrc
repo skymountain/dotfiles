@@ -51,13 +51,16 @@ fi
 
 # prompt
 autoload -U add-zsh-hook
+autoload -U colors
+colors
 
 function echo_prompt {
   if [[ -n $RUN_SCREEN ]]; then
     echo -ne "\ek$(print -P '%20<..<%~')\e\\";
   fi;
 
-  prompt='%n@ %30<..<%~$ ';
+  prompt="%{$fg[green]%}%n@%{$reset_color%} ";
+  prompt+="%{$fg[cyan]%}%30<..<%~$%{$reset_color%} ";
 }
 add-zsh-hook precmd echo_prompt
 
@@ -69,7 +72,7 @@ function echo_command {
 add-zsh-hook preexec echo_command
 
 # git http://d.hatena.ne.jp/mollifier/20100906/p1
-autoload -Uz colors
+autoload -U colors
 colors
 autoload -Uz vcs_info
 
