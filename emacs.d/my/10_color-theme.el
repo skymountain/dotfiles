@@ -118,7 +118,7 @@
     (gnus-summary-normal-ticked-face ((t (:foreground "pink"))))
     (gnus-summary-normal-unread-face ((t (nil))))
     (gnus-summary-selected-face ((t (:underline t))))
-    (highlight ((t (:background "LightSkyBlue1"))))
+    (highlight ((t (:background "SteelBlue4"))))
     (italic ((t (:italic t))))
     (message-cited-text-face ((t (:bold t :foreground "red"))))
     (message-header-cc-face ((t (:bold t :foreground "green4"))))
