@@ -20,6 +20,7 @@
            ("M-j"     camelCase-backward-word)
            ("C-h"     delete-backward-char)
            ("M-h"     camelCase-backward-kill-word)
+           ("M-d"     camelCase-forward-kill-word)
            ("M-f"     camelCase-forward-word)
            ("C-c C-b" beginning-of-buffer)
            ("C-c C-e" end-of-buffer)
