@@ -35,23 +35,28 @@
 
 ; env variable for perl
 (defun get-perllib-module-path-list (modules-dir)
-  (cond ((file-exists-p modules-dir)
-         (mapcar (lambda (basename) (concat modules-dir "/" basename "/lib"))
-                 (filter (lambda (basename) (not (string-match "^\\.*$" basename)))
-                         (directory-files modules-dir))))
-        (t nil)))
+  (when (file-exists-p modules-dir)
+    (flatten
+     (mapcar (lambda (module-name)
+               (let* ((module-dir  (concat modules-dir "/" module-name))
+                      (lib-dir     (concat module-dir "/lib"))
+                      (testlib-dir (concat module-dir "/t/lib")))
+                 (filter 'file-exists-p (list lib-dir testlib-dir))))
+             (filter (lambda (basename) (not (string-match "^\\.+$" basename)))
+                     (directory-files modules-dir))))))
 
 (defun get-perllib-path-list (path)
   (let ((last-idx (string-match-last "/" path)))
     (let ((p (split-to-pair "/" path 'string-match-last)))
-      (when p
-        (let* ((dir      (car p))
-               (basename (cdr p))
-               (ms-dir   (concat dir "/modules"))
-               (libs     (append (and (not (string= dir ""))
-                                      (get-perllib-module-path-list ms-dir))
-                                 (and (string= basename "lib") (list path)))))
-        (append libs (get-perllib-path-list dir)))))))
+      (when (and p (not (string= (car p) "")))
+        (let* ((dir         (car p))
+               (lib-dir     (concat dir "/lib"))
+               (modules-dir (concat dir "/modules"))
+               (testlib-dir (concat dir "/t/lib"))
+               (libs        (filter 'file-exists-p (list lib-dir testlib-dir)))
+               (libs        (append libs
+                                    (get-perllib-module-path-list modules-dir))))
+          (append libs (get-perllib-path-list dir)))))))
 
 (defun set-perl-env (path)
   (let ((libs (get-perllib-path-list path)))
