@@ -11,17 +11,17 @@
       (c-set-offset 'innamespace 0)
       (c-set-offset 'arglist-close 0)
 
-	    (let ((maps '(c-mode-map c++-mode-map)))
+	    (let ((maps (list c-mode-map c++-mode-map)))
 	      (dolist (map maps)
-		(define-keybinds map
-		  '(("#"         cpp-complt-instruction-completing)
-		    ("C-c #"     cpp-complt-ifdef-region)
-		    ("C-c #"     cpp-complt-ifdef-region)
-		    ("C-c C-e"   end-of-buffer)
-		    ("C-c C-b"   beginning-of-buffer)
-		    ("C-c m"     c-macro-expand)
-		    ("C-t"       ff-find-other-file)
-		    ("C-c C-M-c" uncomment-region)))))
+          (define-keybinds map
+            '(("#"         cpp-complt-instruction-completing)
+              ("C-c #"     cpp-complt-ifdef-region)
+              ("C-c #"     cpp-complt-ifdef-region)
+              ("C-c C-e"   end-of-buffer)
+              ("C-c C-b"   beginning-of-buffer)
+              ("C-c m"     c-macro-expand)
+              ("C-t"       ff-find-other-file)
+              ("C-c C-M-c" uncomment-region)))))
 	    ))
 
 ; c++-mode
