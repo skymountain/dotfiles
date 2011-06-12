@@ -29,6 +29,7 @@
           (lambda ()
             (setq comment-start "// ")
             (setq comment-end   "")
+            (highlight-line-over-limit 'c++-mode 80)
             ))
 
 ; include path
