@@ -83,6 +83,15 @@ Strings matched with STRING in template file are replaced by REPLACE, which is s
  '(moccur-split-word t)
  )
 
+(define-keybinds global-map
+  '(("M-g" moccur-grep-find)
+    ))
+
+(define-keybinds moccur-mode-map
+  '(("C-v" nil)
+    ("M-v" nil)
+    ))
+
 (defun add-moccur-exclusion-mask (masks)
   (custom-set-list 'dmoccur-exclusion-mask masks))
 
