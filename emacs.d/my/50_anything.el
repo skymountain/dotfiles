@@ -10,6 +10,7 @@
               '(("M-n" anything-next-source)
                 ("M-p" anything-previous-source)
                 ("RET" anything-exit-minibuffer)
+                ("M-RET" anything-execute-persistent-action)
                 ))))
 
 (require 'anything-c-moccur)
