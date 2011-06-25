@@ -16,3 +16,14 @@
 *.spit
 *.spot
 *.annot
+
+# gcov
+*.gcov
+*.gcda
+*.gcno
+
+# global
+GTAGS
+GPATH
+GRTAGS
+GSYMS

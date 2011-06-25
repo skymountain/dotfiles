@@ -40,18 +40,16 @@
     (fl-type-face ((t (:foreground "yellow"))))
     (font-lock-builtin-face ((t (:foreground "LightSteelBlue"))))
 
-    ;; change
-    (font-lock-comment-face ((t (:foreground "LightSkyBlue1"))))
-    
+    (font-lock-comment-face ((t (:foreground "SteelBlue"))))
     (font-lock-constant-face ((t (:foreground "Aquamarine"))))
     (font-lock-doc-string-face ((t (:foreground "LightSalmon"))))
-    (font-lock-function-name-face ((t (:foreground "LightSkyBlue"))))
-    (font-lock-keyword-face ((t (:foreground "Cyan"))))
+    (font-lock-function-name-face ((t (:foreground "medium slate blue"))))
+    (font-lock-keyword-face ((t (:foreground "SteelBlue"))))
     (font-lock-preprocessor-face ((t (:foreground "Aquamarine"))))
     (font-lock-reference-face ((t (:foreground "LightSteelBlue"))))
-    (font-lock-string-face ((t (:foreground "LightSalmon"))))
-    (font-lock-type-face ((t (:foreground "PaleGreen"))))
-    (font-lock-variable-name-face ((t (:foreground "brightyellow"))))
+    (font-lock-string-face ((t (:foreground "goldenrod"))))
+    (font-lock-type-face ((t (:foreground "LightSkyBlue2"))))
+    (font-lock-variable-name-face ((t (:foreground "wheat"))))
     (font-lock-warning-face ((t (:bold t :foreground "Pink"))))
 
     ;; add
@@ -120,7 +118,7 @@
     (gnus-summary-normal-ticked-face ((t (:foreground "pink"))))
     (gnus-summary-normal-unread-face ((t (nil))))
     (gnus-summary-selected-face ((t (:underline t))))
-    (highlight ((t (:background "darkolivegreen"))))
+    (highlight ((t (:background "SteelBlue4"))))
     (italic ((t (:italic t))))
     (message-cited-text-face ((t (:bold t :foreground "red"))))
     (message-header-cc-face ((t (:bold t :foreground "green4"))))
@@ -163,8 +161,8 @@
     (anything-file-name ((t (:foreground "white"))))
     (anything-dir-priv ((t (:background "Gray15" :foreground "SteelBlue1"))))
     (paren-face-match ((t (:bold t :background "Gray20"))))
-    (flymake-errline ((t (:background "color-220"))))
-    (flymake-warnline ((t (:background "color-88"))))
+    (flymake-errline ((t (:background "firebrick"))))
+    (flymake-warnline ((t (:background "gold"))))
     ))
 
 (defun my-color-theme ()

@@ -10,6 +10,7 @@
               '(("M-n" anything-next-source)
                 ("M-p" anything-previous-source)
                 ("RET" anything-exit-minibuffer)
+                ("M-RET" anything-execute-persistent-action)
                 ))))
 
 (require 'anything-c-moccur)
@@ -19,4 +20,14 @@
   '(("M-l" anything-for-files)
     ("M-y" anything-show-kill-ring)
     ("M-s" anything-c-moccur-occur-by-moccur)
+    ))
+
+(require 'anything-gtags)
+(custom-set-variables
+ '(anything-gtags-enable-initial-pattern t)
+ )
+
+(define-keybinds global-map
+  '(("M-t" anything-gtags-select)
+    ("M-T" anything-gtags-resume)
     ))

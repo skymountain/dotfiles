@@ -46,6 +46,11 @@
                         (t (list s)))))))
     (funcall iter s)))
 
+(defun exists (pred xs)
+  (when xs
+    (if (funcall pred (car xs)) t
+        (exists pred (cdr xs)))))
+
 ; custom
 (defun custom-set-list (symbol seq)
   (let ((seq (if (listp seq) seq (cons seq nil)))
@@ -126,3 +131,29 @@
                         key-maybe-value-list)))
                    packed-modifier-list))))
     (assoc-modify assoc-list modifier-list)))
+
+; file/directory
+(defun find-ceiling-directory (path pred)
+  (let ((p (split-to-pair "/" path 'string-match-last)))
+    (when p
+      (let ((dir (car p)))
+        (if (funcall pred dir) dir
+            (find-ceiling-directory dir pred))))))
+
+(defun find-ceiling-directory-entries-or (path entry-names)
+  (find-ceiling-directory path
+                          (lambda (dir)
+                            (exists
+                             (lambda (entry-name)
+                               (let ((entry (concat dir "/" entry-name)))
+                                 (file-exists-p entry)))
+                             entry-names))))
+
+; buffer
+(defun buffer-clear ()
+  (interactive)
+  (delete-region (point-min) (point-max)))
+
+(defun overwrite-file-contents (file-path)
+  (buffer-clear)
+  (insert-file-contents file-path))

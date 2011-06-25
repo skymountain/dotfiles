@@ -26,6 +26,7 @@
                 ("h" backward-char)
                 ("l" forward-char)
                 ("b" scroll-down)
+                ("F" nil)
               ))
             ))
 

@@ -30,7 +30,7 @@
 (require 'autoinsert)
 (auto-insert-mode 1)
 (custom-set-variables
-  '(auto-insert-directory (expand-file-name "~/.emacs.d/conf/auto-insert"))
+  '(auto-insert-directory (expand-file-name "~/.emacs.d/conf/template"))
   )
 
 (defvar auto-insert-replacement-list ()
@@ -82,6 +82,15 @@ Strings matched with STRING in template file are replaced by REPLACE, which is s
 (custom-set-variables
  '(moccur-split-word t)
  )
+
+(define-keybinds global-map
+  '(("M-g" moccur-grep-find)
+    ))
+
+(define-keybinds moccur-mode-map
+  '(("C-v" nil)
+    ("M-v" nil)
+    ))
 
 (defun add-moccur-exclusion-mask (masks)
   (custom-set-list 'dmoccur-exclusion-mask masks))
