@@ -13,6 +13,10 @@
 
 (require 'camelCase)
 (camelCase-mode 1)
+(define-keybinds camelCase-mode-map
+  '(("M-l" nil)
+    ("M-t" nil)
+    ))
 
 (defun global-keybinds-define-keybinds (map)
   (let ((global-keybinds
