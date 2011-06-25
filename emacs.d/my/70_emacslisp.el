@@ -24,6 +24,7 @@
      "point-undo.el"
      "color-moccur.el"
      "moccur-edit.el"
+     "anything-gtags.el"
      ))
   (install-elisp-list-from-url
    '("http://www.wonderworks.com/download/filladapt.el"

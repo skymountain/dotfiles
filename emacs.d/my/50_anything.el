@@ -21,3 +21,13 @@
     ("M-y" anything-show-kill-ring)
     ("M-s" anything-c-moccur-occur-by-moccur)
     ))
+
+(require 'anything-gtags)
+(custom-set-variables
+ '(anything-gtags-enable-initial-pattern t)
+ )
+
+(define-keybinds global-map
+  '(("M-t" anything-gtags-select)
+    ("M-T" anything-gtags-resume)
+    ))
