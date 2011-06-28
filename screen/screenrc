@@ -31,7 +31,7 @@ markkeys /=^s
 markkeys ?=^r
 
 # shell
-shell      zsh
+shell      $ZSH
 setenv     RUN_SCREEN 1
 hardstatus on
 hardstatus alwayslastline "%-w%{= BW}%n %t%{-}%+w %=%m/%d/%Y %c"
