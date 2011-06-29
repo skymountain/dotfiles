@@ -87,11 +87,15 @@ Strings matched with STRING in template file are replaced by REPLACE, which is s
   '(("M-g" moccur-grep-find)
     ))
 
-(defadvice moccur-set-key (after moccur-set-key-after-advice activate)
-  (define-keybinds ad-return-value
+(defun moccur-modify-keybinds (map)
+  (define-keybinds map
     '(("C-v" nil)
       ("M-v" nil)
       )))
+
+(moccur-modify-keybinds moccur-mode-map)
+(defadvice moccur-set-key (after moccur-set-key-after-advice activate)
+  (moccur-modify-keybinds ad-return-value))
 
 (defun add-moccur-exclusion-mask (masks)
   (custom-set-list 'dmoccur-exclusion-mask masks))
