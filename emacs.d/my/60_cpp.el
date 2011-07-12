@@ -10,6 +10,17 @@
 
       (c-set-offset 'innamespace 0)
       (c-set-offset 'arglist-close 0)
+      (c-set-offset 'arglist-intro '+)
+      (c-set-offset 'topmost-intro-cont
+                    '(lambda (elem)
+                       (let* ((point (c-langelem-pos elem))
+                              (word-at-point (save-excursion
+                                               (goto-char point)
+                                               (thing-at-point 'word))))
+                         (message word-at-point)
+                         (cond
+                          ((string= "typedef" word-at-point) '+)
+                          (t 0)))))
 
 	    (let ((maps (list c-mode-map c++-mode-map)))
 	      (dolist (map maps)
