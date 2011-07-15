@@ -4,7 +4,6 @@
          (word-at-point (save-excursion
                           (goto-char point)
                           (thing-at-point 'word))))
-    (message word-at-point)
     (cond
      ((string= "typedef" word-at-point) '+)
      (t 0))))
@@ -62,15 +61,12 @@
                            dir
                            entries-owned-in-top)))
             (when top-dir
-              (message top-dir)
               (let* ((rel-dir (upcase
                                (substring
                                 (file-name-sans-extension buffer-file-name)
                                 (1+ (length top-dir)))))
                      (entries (and (not (string= rel-dir ""))
                                    (split "/" rel-dir))))
-                (message "REL-DIR: %s" rel-dir)
-                (message "ENTRIES: %s" entries)
                 (when entries (concat "_" (join "_" entries))))))
           "FAIL")))
    ))
