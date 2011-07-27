@@ -34,7 +34,7 @@
             ))
 
 ; env variable for perl
-(defun get-perllib-module-path-list (modules-dir)
+(defun perl-get-perllib-module-path-list (modules-dir)
   (when (file-exists-p modules-dir)
     (flatten
      (mapcar (lambda (module-name)
@@ -45,21 +45,20 @@
              (filter (lambda (basename) (not (string-match "^\\.+$" basename)))
                      (directory-files modules-dir))))))
 
-(defun get-perllib-path-list (path)
-  (let ((last-idx (string-match-last "/" path)))
-    (let ((p (split-to-pair "/" path 'string-match-last)))
-      (when (and p (not (string= (car p) "")))
-        (let* ((dir         (car p))
-               (lib-dir     (concat dir "/lib"))
-               (modules-dir (concat dir "/modules"))
-               (testlib-dir (concat dir "/t/lib"))
-               (libs        (filter 'file-exists-p (list lib-dir testlib-dir)))
-               (libs        (append libs
-                                    (get-perllib-module-path-list modules-dir))))
-          (append libs (get-perllib-path-list dir)))))))
+(defun perl-get-perllib-path-list (path)
+  (let ((p (split-to-pair "/" path 'string-match-last)))
+    (when (and p (not (string= (car p) "")))
+      (let* ((dir         (car p))
+             (lib-dir     (concat dir "/lib"))
+             (modules-dir (concat dir "/modules"))
+             (testlib-dir (concat dir "/t/lib"))
+             (libs        (filter 'file-exists-p (list lib-dir testlib-dir)))
+             (libs        (append libs
+                                  (perl-get-perllib-module-path-list modules-dir))))
+        (append libs (perl-get-perllib-path-list dir))))))
 
-(defun set-perl-env (path)
-  (let ((libs (get-perllib-path-list path)))
+(defun env-init-perl (path)
+  (let ((libs (perl-get-perllib-path-list path)))
     (when libs
       (let* ((lib-env  (or (getenv "PERL5LIB") ""))
              (pre-libs (and (not (string= "" lib-env))
@@ -89,7 +88,7 @@
   (ad-activate 'flymake-post-syntax-check)
   (setq flymake-allowed-file-name-masks (append flymake-allowed-file-name-masks flymake-allowed-perl-file-name-masks))
   (setq flymake-err-line-patterns flymake-perl-err-line-patterns)
-  (set-perl-env buffer-file-name)
+  (env-init-perl buffer-file-name)
   (flymake-mode t))
 
 (add-hook 'cperl-mode-hook '(lambda ()
