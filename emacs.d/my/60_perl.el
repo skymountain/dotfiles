@@ -60,11 +60,7 @@
 (defun env-init-perl (path)
   (let ((libs (perl-get-perllib-path-list path)))
     (when libs
-      (let* ((lib-env  (or (getenv "PERL5LIB") ""))
-             (pre-libs (and (not (string= "" lib-env))
-                            (split ":" lib-env))))
-        (setenv "PERL5LIB"
-                (join ":" (uniq (append pre-libs libs))))))))
+      (env-append "PERL5LIB" libs))))
 
 ; flymake for perl
 (defvar flymake-perl-err-line-patterns '(("\\(.*\\) at \\([^ \n]+\\) line \\([0-9]+\\)[,.\n]" 2 3 nil 1)))
