@@ -55,19 +55,10 @@
  "\\.hpp$" [ "template.hpp" auto-insert-dynamically ]
  '(("%HEADER_GUARD%" .
     (lambda ()
-      (or (let* ((entries-owned-in-top '(".git"))
-                 (dir     (file-name-directory buffer-file-name))
-                 (top-dir (find-ceiling-directory-entries-or
-                           dir
-                           entries-owned-in-top)))
-            (when top-dir
-              (let* ((rel-dir (upcase
-                               (substring
-                                (file-name-sans-extension buffer-file-name)
-                                (1+ (length top-dir)))))
-                     (entries (and (not (string= rel-dir ""))
-                                   (split "/" rel-dir))))
-                (when entries (concat "_" (join "_" entries))))))
+      (or (let ((entries (entries-to-vc-dir
+                          (file-name-sans-extension buffer-file-name))))
+            (when entries
+              (upcase (concat "_" (join "_" entries)))))
           "FAIL")))
    ))
 

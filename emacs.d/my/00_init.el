@@ -36,5 +36,10 @@
   '(fill-column 100)
 )
 
+(defvar vc-entries
+  '(".git"
+    ".svn"
+    ))
+
 (defalias 'message-box 'message)
 (defalias 'yes-or-no-p 'y-or-n-p)

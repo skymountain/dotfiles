@@ -149,6 +149,19 @@
                                  (file-exists-p entry)))
                              entry-names))))
 
+(defun entries-between (short-path long-path)
+  (let ((rel-path (file-relative-name long-path short-path)))
+    (split "/" rel-path)))
+
+(defun entries-to-vc-dir (from-path)
+  (let ((vc-dir (find-ceiling-directory-entries-or
+                 from-path
+                 vc-entries)))
+    (when vc-dir
+      (entries-between
+       vc-dir
+       from-path))))
+
 ; buffer
 (defun buffer-clear ()
   (interactive)
