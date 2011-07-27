@@ -60,6 +60,21 @@
             (when entries
               (upcase (concat "_" (join "_" entries)))))
           "FAIL")))
+   ("%NAMESPACE%" .
+    (lambda ()
+      (or (let ((entries (entries-to-vc-dir
+                          (file-name-directory-sans-slash buffer-file-name))))
+            (when entries
+              (let ((namespace-open
+                     (join " " (mapcar
+                                (lambda (entry) (format "namespace %s {" entry))
+                                entries)))
+                    (namespace-close
+                     (concat (string-repeat "}" (length entries))
+                             " // namespace "
+                             (join "::" entries))))
+                (concat namespace-open "\n" namespace-close))))
+          "FAIL")))
    ))
 
 (defun cpp-insert-test-code ()

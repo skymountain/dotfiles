@@ -10,11 +10,6 @@
 (defun filter (my-filter-function xs)
   (foldr (lambda (x acc) (if (funcall my-filter-function x) (cons x acc) acc)) xs nil))
 
-(defun string-match-last (r s &optional offset)
-  (let ((idx (string-match r s offset)))
-    (and idx
-         (or (string-match-last r s (1+ idx)) idx))))
-
 (defun join (separator sequence)
   (mapconcat 'identity sequence separator))
 
@@ -132,6 +127,16 @@
                    packed-modifier-list))))
     (assoc-modify assoc-list modifier-list)))
 
+; string
+(defun string-match-last (r s &optional offset)
+  (let ((idx (string-match r s offset)))
+    (and idx
+         (or (string-match-last r s (1+ idx)) idx))))
+
+(defun string-repeat (s count)
+  (if (eq count 0) ""
+      (concat s (string-repeat s (1- count)))))
+
 ; file/directory
 (defun find-ceiling-directory (path pred)
   (let ((p (split-to-pair "/" path 'string-match-last)))
@@ -161,6 +166,14 @@
       (entries-between
        vc-dir
        from-path))))
+
+(defun file-name-directory-sans-slash (path)
+  (let* ((path (file-name-directory path))
+         (len  (length path)))
+    (cond ((eq len 0) path)
+          ((and (eq len 1) (string= "/" path)) "")
+          ((and (eq len 1) path))
+          (t (substring path 0 -1)))))
 
 ; buffer
 (defun buffer-clear ()
