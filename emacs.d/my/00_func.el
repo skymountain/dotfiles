@@ -157,3 +157,10 @@
 (defun overwrite-file-contents (file-path)
   (buffer-clear)
   (insert-file-contents file-path))
+
+; environment variable
+(defun env-append (env-name strs)
+  (let* ((env-mapped (or (getenv env-name) ""))
+         (env-strs (and (not (string= "" env-mapped))
+                        (split ":" lib-env))))
+    (setenv env-name (join ":" (uniq (append strs env-strs))))))

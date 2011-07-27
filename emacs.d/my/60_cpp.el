@@ -74,3 +74,31 @@
 (defun cpp-insert-test-code ()
   (interactive)
   (overwrite-file-contents (expand-file-name "~/.emacs.d/conf/template/test.cpp")))
+
+; flymake
+(defun flymake-cpp-init-on-the-fly ()
+  (let* ((tmp-file (flymake-init-create-temp-buffer-copy
+                    'flymake-create-temp-inplace))
+         (local-file (file-relative-name
+                      tmp-file
+                      (file-name-directory buffer-file-name)))
+         (args (list "-Wall"
+                     "-Wextra"
+                     "-Winit-self"
+                     "-fsyntax-only"
+                     tmp-file)))
+    (list "g++" args)))
+
+(defun flymake-cpp-init ()
+  (if (find-ceiling-directory-entries-or
+       (file-name-directory buffer-file-name)
+       '("Makefile"))
+      (flymake-simple-make-init)
+      (flymake-cpp-init-on-the-fly)))
+
+(push '("\\.[ch]pp$" flymake-cpp-init) flymake-allowed-file-name-masks)
+
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (flymake-mode t)
+            ))
