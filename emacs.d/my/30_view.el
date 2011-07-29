@@ -27,6 +27,8 @@
                 ("l" forward-char)
                 ("b" scroll-down)
                 ("F" nil)
+                ("C-j" (lambda () (interactive) (scroll-up 10)))
+                ("C-k" (lambda () (interactive) (scroll-down 10)))
               ))
             ))
 
