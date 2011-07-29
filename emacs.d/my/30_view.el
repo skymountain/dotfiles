@@ -36,3 +36,48 @@
   (add-hook mode-hook (lambda ()
                         (view-mode 1)
                         )))
+
+(defun view-mode-globalize-on-find-file (mode)
+  (let ((hook-fun (lambda () (view-mode t))))
+    (if mode
+        (add-hook    'find-file-hook hook-fun)
+        (remove-hook 'find-file-hook hook-fun))))
+
+;; (defvar view-mode-globalize-stack nil)
+;; (make-variable-buffer-local 'view-mode-globalize-stack)
+
+;; (defun view-mode-globalize-in-buffers (mode)
+;;   (let ((global-state-modifier
+;;          (if mode
+;;              (lambda ()
+;;                (setq view-mode-globalize-stack
+;;                      (cons (if view-mode 1 0) view-mode-globalize-stack))
+;;                (message "now view-mode: %s" view-mode)
+;;                (view-mode 1))
+;;              (lambda ()
+;;                (let ((mode (pop view-mode-globalize-stack)))
+;;                  (message "next view-mode: %s" mode)
+;;                  (view-mode mode))))))
+;;     (message "%s" mode)
+;;     (save-excursion
+;;       (dolist (buffer (buffer-list))
+;;         (set-buffer buffer)
+;;         (when buffer-file-name
+;;           (message buffer-file-name)
+;;           (funcall global-state-modifier))))))
+
+(defun view-mode-globalize-function (arg)
+  (let* ((symbol-name 'view-mode-globalize)
+         (prop-name   'previous)
+         (prev-mode (get symbol-name prop-name))
+         (mode (cond ((null arg) (not prev-mode))
+                     ((>= arg 1) t)
+                     (t          nil))))
+    (put symbol-name prop-name mode)
+    (view-mode-globalize-on-find-file mode)
+    ;; (view-mode-globalize-in-buffers mode)
+    (view-mode (if mode 1 0))))
+
+(defun view-mode-globalize (&optional arg)
+  (interactive "P")
+  (view-mode-globalize-function arg))
