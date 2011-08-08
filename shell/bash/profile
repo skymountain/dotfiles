@@ -10,12 +10,14 @@ export PATH=$DOTDIR/script:$PATH
 export PATH=$TOOLDIR/bin:$PATH
 export PERLBREW_ROOT=$TOOLDIR/perlbrew
 
-## editor
-export EDITOR='`"$EMACS"`'
 export PAGER='less -R'
 
 # read a local profile file.
 local=$DOTDIR/shell/bash/profile.local
 if [ -e $local ]; then
   . $local
+fi
+
+if [ -n $EMACS ]; then
+  export EDITOR=$EMACS
 fi

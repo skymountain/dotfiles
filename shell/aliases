@@ -13,12 +13,8 @@ alias la='ls -A'
 alias lla='ls -lA'
 alias term='gnome-terminal'
 alias ff='firefox&'
-alias unison='unison.sh'
 alias p='cd ../'
 alias su='su -l'
-alias topcoder='javaws $TOOLDIR/topcoder/ContestAppletProd.jnlp'
-alias tcoder='javaws $TOOLDIR/topcoder/ContestAppletProd.jnlp'
-alias e='$DOTDIR/script/emacs.sh&'
 
 # git
 alias ga='git add'
