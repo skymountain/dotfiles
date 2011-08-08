@@ -18,12 +18,15 @@
 ; undo tree
 (require 'undo-tree)
 (global-undo-tree-mode 1)
+(define-keybinds global-map
+  '(("C-_" undo-tree-undo)
+    ("C-\\" undo-tree-redo)))
 
 ; point-undo
 (require 'point-undo)
 (define-keybinds global-map
-  '(("C-c C-/" point-undo)
-    ("C-c C-?" point-redo)
+  '(("C-c C-_" point-undo)
+    ("C-c C-\\" point-redo)
     ))
 
 ; auto insert
