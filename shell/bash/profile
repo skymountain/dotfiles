@@ -18,6 +18,6 @@ if [ -e $local ]; then
   . $local
 fi
 
-if [ -n $EMACS ]; then
+if [ -n "$EMACS" ]; then
   export EDITOR=$EMACS
 fi
