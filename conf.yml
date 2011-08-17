@@ -5,14 +5,8 @@ install:
     # - shell
 
   symlink:
-    - from: dict
-      to:   $HOME/.dict
-    - from: fonts
-      to:   $HOME/.fonts
     - from: emacs.d
       to:   $HOME/.emacs.d
-    - from: unison
-      to:   $HOME/.unison
     # git
     - from: git/gitignore
       to:   $HOME/.gitignore
@@ -24,7 +18,9 @@ install:
     # screen
     - from: screen/screenrc
       to:   $HOME/.screenrc
-
+    # zsh
+    - from: shell/zsh/zshrc
+      to:   $HOME/.zshrc
   prototype:
     # misc
     - from: misc/xmodmap.prototype
