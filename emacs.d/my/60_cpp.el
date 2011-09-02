@@ -20,6 +20,7 @@
       (c-set-offset 'innamespace 0)
       (c-set-offset 'arglist-close 0)
       (c-set-offset 'arglist-intro '+)
+      (c-set-offset 'inline-open 0)
       (c-set-offset 'topmost-intro-cont 'cpp-custom-indent)
 
 	    (let ((maps (list c-mode-map c++-mode-map)))
