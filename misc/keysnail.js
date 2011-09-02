@@ -145,14 +145,6 @@ key.setGlobalKey(['C-c', 'C-c', 'C-c'], function () {
     command.clearConsole();
 }, 'Javascript コンソールの表示をクリア', true);
 
-key.setGlobalKey(['C-c', 'C-j'], function () {
-    BrowserBack();
-}, '戻る');
-
-key.setGlobalKey(['C-c', 'C-f'], function () {
-    BrowserForward();
-}, '進む');
-
 key.setGlobalKey(['C-c', 'j'], function (ev) {
     var browser = getBrowser();
     if (browser.mCurrentTab.previousSibling) {
@@ -189,11 +181,11 @@ key.setGlobalKey(['C-H', 'c'], function (ev, arg) {
     ext.exec("list-hateb-comments", arg, ev);
 }, 'List hatena bookmark comments of this page', true);
 
-key.setGlobalKey('C-M-f', function () {
+key.setGlobalKey(['C-c', 'C-j'], function () {
     gBrowser.mTabContainer.advanceSelectedTab(1, true);
 }, 'ひとつ右のタブへ');
 
-key.setGlobalKey('C-M-j', function () {
+key.setGlobalKey(['C-c', 'C-k'], function () {
     gBrowser.mTabContainer.advanceSelectedTab(-1, true);
 }, 'ひとつ左のタブへ');
 

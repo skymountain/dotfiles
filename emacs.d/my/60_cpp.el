@@ -24,6 +24,7 @@
 
 	    (let ((maps (list c-mode-map c++-mode-map)))
 	      (dolist (map maps)
+          (global-keybinds-define-keybinds map)
           (define-keybinds map
             '(("#"         cpp-complt-instruction-completing)
               ("C-c #"     cpp-complt-ifdef-region)
