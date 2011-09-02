@@ -30,7 +30,6 @@
       '("node"
         "eqeqeq"
         "eqnull"
-        "globalstrict"
         "latedef"
         "noarg"
         "noempty"
