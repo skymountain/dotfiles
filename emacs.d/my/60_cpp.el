@@ -97,12 +97,28 @@
                      tmp-file)))
     (list "g++" args)))
 
+(defvar flymake-cpp-method-list nil)
+
 (defun flymake-cpp-init ()
-  (if (find-ceiling-directory-entries-or
-       (file-name-directory buffer-file-name)
-       '("Makefile"))
-      (flymake-simple-make-init)
-      (flymake-cpp-init-on-the-fly)))
+  (let ((candidate-list
+         (flatten
+          (list flymake-cpp-method-list
+                '(
+                 ((lambda () (find-ceiling-directory-entries-or
+                          (file-name-directory buffer-file-name)
+                          '("Makefile")))
+                  . flymake-simple-make-init)
+                 ((lambda () t)
+                  . flymake-cpp-init-on-the-fly)
+                 ))))
+        (use-method nil))
+    (dolist (candidate candidate-list)
+      (let ((pred   (car candidate))
+            (method (cdr candidate)))
+        (when (and (not use-method) (funcall pred))
+          (setq use-method method))))
+    (when use-method
+      (funcall use-method))))
 
 (push '("\\.[ch]pp$" flymake-cpp-init) flymake-allowed-file-name-masks)
 
