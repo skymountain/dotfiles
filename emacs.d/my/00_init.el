@@ -33,7 +33,7 @@
   '(history-length 1000)
   '(transient-mark-mode t)
   '(indent-tabs-mode nil)
-  '(fill-column 100)
+  '(fill-column 80)
 )
 
 (defvar vc-entries

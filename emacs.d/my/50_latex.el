@@ -15,9 +15,13 @@
 (setq YaTeX-help-file
       (expand-file-name "YATEHELP.jp" data-directory))
 
-(add-hook 'yatex-mode-hook '(lambda ()
-			      (require 'font-latex)
-                              (font-latex-setup)))
+(add-hook 'yatex-mode-hook
+          '(lambda ()
+             (require 'font-latex)
+             (font-latex-setup)
+
+             (setq fill-column 80)
+             ))
 
 ;; ;; *****************
 ;; ;; AUCTex
