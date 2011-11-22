@@ -1,4 +1,7 @@
 #!/bin/bash
 
 file=$1
-platex $file && platex $file && dvipdfmx ${file%.*}
+dvifile=${file%.*}.dvi
+psfile=${file%.*}.ps
+
+platex $file && platex $file && dvips -P pdf $dvifile && ps2pdf $psfile
