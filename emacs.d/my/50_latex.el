@@ -1,6 +1,6 @@
 ; YaTeX
 ; automatically change major-mode to yatex-mode if the extension is .tex
-(setq auto-mode-alist (cons '("\\.tex$" . yatex-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.o?tex$" . yatex-mode) auto-mode-alist))
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 
 ;;   1=Shift JIS
@@ -17,10 +17,14 @@
 
 (add-hook 'yatex-mode-hook
           '(lambda ()
+             (require 'yatexprc)
              (require 'font-latex)
              (font-latex-setup)
-
              (setq fill-column 80)
+
+             (define-keybinds YaTeX-mode-map
+               '(("C-c C-c" recompile)
+                 ))
              ))
 
 ;; ;; *****************
