@@ -8,3 +8,6 @@
 (setq win:use-frame nil)
 (win:startup-with-window)
 (define-key ctl-x-map (kbd "C") 'see-you-again)
+
+;; (require 'popwin)
+;; (setq display-buffer-function 'popwin:display-buffer)
