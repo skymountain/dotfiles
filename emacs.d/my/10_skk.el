@@ -1,3 +1,5 @@
+(require 'skk)
+
 (setq skk-kakutei-key (kbd "C-b"))
 
 ; 変換時に改行でも確定
@@ -37,9 +39,12 @@
 ; specify sitcky key
 (setq skk-sticky-key ";")
 
+(setq skk-jisyo (expand-file-name "~/dot/dict/user-jisyo"))
+
 ; specify dictionaries
 (setq skk-search-prog-list
-      '((skk-search-jisyo-file (expand-file-name "~/.dict/skk/SKK-JISYO.L") 10000)
+      '((skk-search-jisyo-file skk-jisyo 0 t)
+        (skk-search-jisyo-file (expand-file-name "~/.dict/skk/SKK-JISYO.L") 10000)
         (skk-search-jisyo-file (expand-file-name "~/.dict/skk/SKK-JISYO.geo") 10000)
         (skk-search-jisyo-file (expand-file-name "~/.dict/skk/SKK-JISYO.jinmei") 10000)))
 
