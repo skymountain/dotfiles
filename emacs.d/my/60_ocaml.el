@@ -48,7 +48,7 @@
                 ))
             ))
 
-; flymake for ocaml
+; flymake
 (defun flymake-ocaml-init ()
   (flymake-simple-make-init-impl
    'flymake-create-temp-with-folder-structure nil nil

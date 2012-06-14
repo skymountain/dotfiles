@@ -83,44 +83,21 @@
   (interactive)
   (overwrite-file-contents (expand-file-name "~/.emacs.d/conf/template/test.cpp")))
 
-; flymake
-(defun flymake-cpp-init-on-the-fly ()
-  (let* ((tmp-file (flymake-init-create-temp-buffer-copy
-                    'flymake-create-temp-inplace))
-         (local-file (file-relative-name
-                      tmp-file
-                      (file-name-directory buffer-file-name)))
-         (args (list "-Wall"
-                     "-Wextra"
-                     "-Winit-self"
-                     "-fsyntax-only"
-                     tmp-file)))
-    (list "g++" args)))
-
-(defvar flymake-cpp-method-list nil)
-
-(defun flymake-cpp-init ()
-  (let ((candidate-list
-         (flatten
-          (list flymake-cpp-method-list
-                '(
-                 ((lambda () (find-ceiling-directory-entries-or
-                          (file-name-directory buffer-file-name)
-                          '("Makefile")))
-                  . flymake-simple-make-init)
-                 ((lambda () t)
-                  . flymake-cpp-init-on-the-fly)
-                 ))))
-        (use-method nil))
-    (dolist (candidate candidate-list)
-      (let ((pred   (car candidate))
-            (method (cdr candidate)))
-        (when (and (not use-method) (funcall pred))
-          (setq use-method method))))
-    (when use-method
-      (funcall use-method))))
-
-(push '("\\.[ch]pp$" flymake-cpp-init) flymake-allowed-file-name-masks)
+(flymake-add-allowed-file-name-masks
+ "\\.[ch]pp$"
+ (flymake-make-init
+  `(
+    ((lambda () (find-ceiling-directory-entries-or
+             (file-name-directory buffer-file-name)
+             '("Makefile")))
+     . flymake-simple-make-init)
+    ((lambda () t)
+     . ,(flymake-make-init-on-the-fly
+         "g++" '("-Wall"
+                 "-Wextra"
+                 "-Winit-self"
+                 "-fsyntax-only")))
+    )))
 
 (add-hook 'c++-mode-hook
           (lambda ()
