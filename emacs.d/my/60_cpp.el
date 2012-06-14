@@ -49,8 +49,8 @@
 (if (boundp 'header-dirs)
     (setq cpp-complt-standard-header-path header-dirs))
 
-; allocate *.h to c++ mode
-(add-to-list 'auto-mode-alist '("\\.h$" . c++-mode))
+; allocate *.h and *.c to c++ mode
+(add-to-list 'auto-mode-alist '("\\.[hc]$" . c++-mode))
 
 ; auto insert
 (auto-insert-register
@@ -84,7 +84,7 @@
   (overwrite-file-contents (expand-file-name "~/.emacs.d/conf/template/test.cpp")))
 
 (flymake-add-allowed-file-name-masks
- "\\.[ch]pp$"
+ "\\.\\([ch]pp\\)\\|[ch]$"
  (flymake-make-init
   `(
     ((lambda () (find-ceiling-directory-entries-or
