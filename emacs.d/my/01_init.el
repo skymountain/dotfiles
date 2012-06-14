@@ -22,6 +22,8 @@
 (line-number-mode 1)
 (column-number-mode 1)
 
+(put 'upcase-region 'disabled nil)
+
 (custom-set-variables
   '(compilation-window-height 10)
   '(tab-width 2)
