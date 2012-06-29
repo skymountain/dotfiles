@@ -1,8 +1,9 @@
-; smart indent for paste
-; http://www.emacswiki.org/emacs/AutoIndentation#SmartPaste
-(defadvice yank (after indent-region activate)
-  (if (member major-mode
+; yank indent mode
+(global-yank-indent-mode 1)
+(setq yank-indent-enabled-major-mode-list
+      (append yank-indent-enabled-major-mode-list
               '(emacs-lisp-mode
+                lisp-interaction-mode
                 scheme-mode
                 lisp-mode
                 c-mode
@@ -11,9 +12,8 @@
                 latex-mode
                 plain-tex-mode
                 yatex-mode
-                ocaml-mode))
-      (let ((mark-even-if-inactive t))
-        (indent-region (region-beginning) (region-end) nil))))
+                ocaml-mode
+                )))
 
 ; undo tree
 (require 'undo-tree)
