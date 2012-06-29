@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<root>
+  <item>
+    <name>My KeyRemap4MacBook</name>
+    <list>
+      <item>
+        <name>For Firefox</name>
+        <list>
+          <item>
+            <appendix>EISUU to Command_L</appendix>
+            <identifier>remap.my.firefox.eisuu_to_command_l</identifier>
+            <autogen>--KeyToKey-- KeyCode::JIS_EISUU, KeyCode::COMMAND_L</autogen>
+            <only>FIREFOX</only>
+          </item>
+        </list>
+      </item>
+      <item>
+        <name>For Japanese</name>
+        <list>
+          <item>
+            <appendix>OPTION_L to KANA-EISUU Toggle</appendix>
+            <identifier>remap.my.japanese.option_l_to_kana_eisuu_toggle</identifier>
+            <autogen>--KeyToKey-- KeyCode::OPTION_L, KeyCode::VK_JIS_TOGGLE_EISUU_KANA</autogen>
+          </item>
+        </list>
+      </item>
+    </list>
+  </item>
+</root>
