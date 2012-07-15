@@ -40,7 +40,7 @@
             (local-file (file-relative-name
                          tmp-file
                          (file-name-directory buffer-file-name)))
-            (args (append ,flags (list tmp-file))))
+            (args (append (quote ,flags) (list tmp-file))))
        (list ,program args))))
 
 ; auto complete

@@ -85,19 +85,12 @@
 
 (flymake-add-allowed-file-name-masks
  "\\.\\([ch]pp\\)\\|[ch]$"
- (flymake-make-init
-  `(
-    ((lambda () (find-ceiling-directory-entries-or
-             (file-name-directory buffer-file-name)
-             '("Makefile")))
-     . flymake-simple-make-init)
-    ((lambda () t)
-     . ,(flymake-make-init-on-the-fly
-         "g++" '("-Wall"
-                 "-Wextra"
-                 "-Winit-self"
-                 "-fsyntax-only")))
-    )))
+ (flymake-make-init-on-the-fly
+  "g++" '("-Wall"
+          "-Wextra"
+          "-Winit-self"
+          "-fsyntax-only"
+          )))
 
 (add-hook 'c++-mode-hook
           (lambda ()
