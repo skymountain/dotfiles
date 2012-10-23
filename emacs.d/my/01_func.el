@@ -95,7 +95,7 @@
 ;;
 ;; sample code
 ;;
-;; add(assoc-modify-packed
+;; (assoc-modify-packed
 ;;     '((a 1) (b 2) (c 3) (d . 4))
 ;;     '((delete a c)))
 
@@ -126,6 +126,10 @@
                         key-maybe-value-list)))
                    packed-modifier-list))))
     (assoc-modify assoc-list modifier-list)))
+
+(defun assoc-delete-by-value (assoc-list value)
+  (foldl `(lambda (acc p) (if (equal (cdr p) (quote ,value)) acc (cons p acc)))
+         nil assoc-list))
 
 ; string
 (defun string-match-last (r s &optional offset)
