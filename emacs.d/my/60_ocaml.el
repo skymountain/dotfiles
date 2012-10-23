@@ -1,7 +1,11 @@
 ; ocaml-mode(tuareg)
 (require 'tuareg)
 (require 'ocamlspot)
+
+(when (member '("\\.ml\\'" . lisp-mode) auto-mode-alist)
+  (setq auto-mode-alist (delete '("\\.ml\\'" . lisp-mode) auto-mode-alist)))
 (add-to-list 'auto-mode-alist '("\\.ml\\w?" . tuareg-mode))
+
 (setq ocamlspot-command "/usr/local/ocaml/bin/ocamlspot")
 
 (define-keybinds global-map

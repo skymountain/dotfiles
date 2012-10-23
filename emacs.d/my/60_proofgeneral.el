@@ -1,6 +1,8 @@
 (require 'proof-site)
 
 (add-to-list 'ac-modes 'coq-mode)
+(setq auto-mode-alist
+      (assoc-delete-by-value auto-mode-alist 'hol-light-mode))
 
 (custom-set-variables
  '(proof-electric-terminator-enable t)
