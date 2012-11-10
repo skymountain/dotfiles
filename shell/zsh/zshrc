@@ -106,3 +106,11 @@ local=$DOTDIR/shell/zsh/zshrc.local
 if [ -e $local ]; then
   . $local
 fi
+
+# omake
+if [ `which -s omake` ]; then
+  omake_stdlib=`echo 'echo $(absname $(STDLIB))' | omake --shell`
+  export OMAKEPATH=$omake_stdlib:$OMAKEPATH
+  export OMAKEPATH=$DOTDIR/omake:$OMAKEPATH
+  export OMAKEPATH=.:$OMAKEPATH
+fi
