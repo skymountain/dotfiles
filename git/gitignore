@@ -30,6 +30,7 @@
 *.bbl
 *.blg
 *.dvi
+*.fls
 
 # global
 GTAGS
