@@ -16,6 +16,8 @@
 *.spit
 *.spot
 *.annot
+*.cmt
+*.cmti
 
 # gcov
 *.gcov
