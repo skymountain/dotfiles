@@ -1,4 +1,7 @@
 (require 'omake-mode)
+
+(setq omake-sound-allow nil)
+
 (define-keybinds global-map
   '(("M-P" omake-previous-error)
     ("M-N" omake-next-error)
