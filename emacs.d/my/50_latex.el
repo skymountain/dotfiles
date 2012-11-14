@@ -21,6 +21,7 @@
              (require 'font-latex)
              (font-latex-setup)
              (setq fill-column 80)
+             (reftex-mode t)
 
              (define-keybinds YaTeX-mode-map
                '(("C-c C-c" recompile)
