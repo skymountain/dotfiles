@@ -3,7 +3,6 @@
 
 (custom-theme-set-faces
  'skymountain
- '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "Grey" :background "Grey15" :stipple nil :inherit nil))))
  '(cursor ((t (:background "red"))))
  '(fixed-pitch ((t (:family "Monospace"))))
  '(variable-pitch ((t (:family "Sans Serif"))))
@@ -45,6 +44,8 @@
  '(match ((t (:background "RoyalBlue"))))
  '(next-error ((t (:inherit (region)))))
  '(query-replace ((t (:inherit (isearch)))))
- '(paren-face-match ((t (:background "RoyalBlue")))))
+ '(paren-face-match ((t (:background "RoyalBlue"))))
+ '(ido-only-match ((t (:foreground "yellow"))))
+ '(default ((t (:family "default" :foundry "default" :width normal :height 1 :weight normal :slant normal :underline nil :overline nil :strike-through nil :box nil :inverse-video nil :foreground "Grey" :background "Grey15" :stipple nil :inherit nil)))))
 
 (provide-theme 'skymountain)
