@@ -52,7 +52,8 @@
         (preseq (if (boundp symbol)
                     (symbol-value symbol)
                     ())))
-    (custom-set-variables (list symbol '(append preseq seq) t))))
+    (custom-set-variables
+     (list symbol `(append (quote ,preseq) (quote ,seq)) t))))
 
 ; function group
 (defun add-function-to-group (symbol func)
