@@ -7,7 +7,7 @@
 ;;   2=JIS
 ;;   3=EUC
 ;;   4=UTF-8
-(setq YaTeX-kanji-code 3)
+(setq YaTeX-kanji-code 4)
 (setq tex-command (expand-file-name "~/.emacs.d/script/tex/texpdf.sh"))
 (setq dvi2-command "dviout");
 (setq YaTeX-nervous nil)
