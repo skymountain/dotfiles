@@ -7,29 +7,38 @@
  )
 (package-initialize)
 
+(defvar required-package-list
+  '(anything
+    auto-complete
+    color-moccur
+    color-theme
+    flymake-cursor
+    gtags
+    haskell-mode
+    magit
+    mic-paren
+    perl-completion
+    point-undo
+    popup
+    popwin
+    pretty-lambdada
+    revive
+    rust-mode
+    scheme-complete
+    session
+    shell-pop
+    tuareg
+    undo-tree
+    yaml-mode
+    zlc
+    ))
+
 (require 'cl)
-(mapcar (lambda (p)
-          (when (not (package-installed-p p))
-            (package-install p)))
-        '(anything
-          auto-complete
-          color-moccur
-          color-theme
-          flymake-cursor
-          gtags
-          haskell-mode
-          mic-paren
-          perl-completion
-          point-undo
-          popup
-          popwin
-          pretty-lambdada
-          revive
-          rust-mode
-          scheme-complete
-          session
-          shell-pop
-          tuareg
-          undo-tree
-          zlc
-          ))
+
+(let ((not-installed (loop for x in required-package-list
+                           when (not (package-installed-p x))
+                           collect x)))
+  (when not-installed
+    (package-refresh-contents)
+    (dolist (pkg not-installed)
+      (package-install pkg))))
