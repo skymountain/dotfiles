@@ -1,5 +1,5 @@
 # change keybindings
-xmodmap=$DOTDIR/misc/xmodmap
+xmodmap=~/.xmodmap
 if [ \( -n "$DISPLAY" \) -a \( -e $xmodmap \) ]; then
   (xmodmap $xmodmap)
 fi
@@ -20,4 +20,16 @@ fi
 
 if [ -n "$EMACS" ]; then
   export EDITOR=$EMACS
+fi
+
+# OPAM
+eval `opam config env`
+export OCAML_ANNOT=1
+
+. /home/lab8/t-sekiym/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
+# CABAL
+cabal_path=$HOME/.cabal/bin
+if [ -d "$cabal_path" ]; then
+  export PATH=$cabal_path:$PATH
 fi

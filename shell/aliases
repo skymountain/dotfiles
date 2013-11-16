@@ -26,6 +26,12 @@ alias gch='git checkout'
 alias gst='git status'
 alias gstash='git stash'
 
+# screen
+alias screen='screen -U'
+
+# emacs
+alias e='$EMACS -nw'
+
 # local aliases
 local=$DOTDIR/shell/aliases.local
 if [ -e $local ]; then
