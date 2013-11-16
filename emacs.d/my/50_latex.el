@@ -1,7 +1,10 @@
 ; YaTeX
+(require 'yatex)
+
 ; automatically change major-mode to yatex-mode if the extension is .tex
-(setq auto-mode-alist (cons '("\\.o?tex$" . yatex-mode) auto-mode-alist))
-(autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
+
+(rassq-delete-all 'tex-mode auto-mode-alist)
+(add-to-list 'auto-mode-alist '("\\.o?tex$" . yatex-mode))
 
 ;;   1=Shift JIS
 ;;   2=JIS
@@ -23,10 +26,17 @@
              (setq fill-column 80)
              (reftex-mode t)
 
+             (global-keybinds-define-keybinds YaTeX-mode-map)
              (define-keybinds YaTeX-mode-map
                '(("C-c C-c" recompile)
                  ))
              ))
+
+; bibtex
+(add-hook 'bibtex-mode-hook
+          (lambda ()
+            (global-keybinds-define-keybinds bibtex-mode-map)
+            ))
 
 ;; ;; *****************
 ;; ;; AUCTex
