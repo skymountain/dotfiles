@@ -5,10 +5,13 @@
 
 ; shell
 (require 'shell-pop)
-(shell-pop-set-internal-mode "ansi-term")
-(shell-pop-set-internal-mode-shell "/bin/bash")
+(custom-set-variables
+ '(shell-pop-shell-type
+   (quote ("ansi-term" "*ansi-term*" (lambda () (ansi-term shell-pop-term-shell)))))
+ `(shell-pop-term-shell ,(getenv "ZSH"))
+)
 
-(shell-pop-set-window-height 30)
+;; (setq shell-pop-window-height 30)
 (define-keybinds global-map
   '(("C-c C-s" shell-pop)
     ))

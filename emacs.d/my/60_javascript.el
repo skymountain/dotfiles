@@ -39,6 +39,10 @@
 
 (setq flymake-javascript-predefined-variables
       '("console"
+        "_"
+        "$"
+        "window"
+        "document"
         ))
 
 (add-hook 'js-mode-hook

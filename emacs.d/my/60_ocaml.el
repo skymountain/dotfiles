@@ -6,7 +6,7 @@
   (setq auto-mode-alist (delete '("\\.ml\\'" . lisp-mode) auto-mode-alist)))
 (add-to-list 'auto-mode-alist '("\\.ml\\w?" . tuareg-mode))
 
-(setq ocamlspot-command "/usr/local/ocaml/bin/ocamlspot")
+(setq ocamlspot-command (expand-file-name "~/.opam/4.00.1+annot/bin/ocamlspot"))
 
 (define-keybinds global-map
   '(("C-c C-o" tuareg-run-caml)

@@ -9,5 +9,10 @@
 (win:startup-with-window)
 (define-key ctl-x-map (kbd "C") 'see-you-again)
 
-;; (require 'popwin)
+(require 'popwin)
+(popwin-mode 1)
+(define-keybinds global-map
+  '(("M-p" popwin:popup-buffer )
+    ))
+
 ;; (setq display-buffer-function 'popwin:display-buffer)

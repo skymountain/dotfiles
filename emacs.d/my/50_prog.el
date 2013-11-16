@@ -62,3 +62,6 @@
     (font-lock-add-keywords mode
                             `((,regexp 1 font-lock-warning-face t)))
     ))
+
+; etc.
+(which-func-mode 1)

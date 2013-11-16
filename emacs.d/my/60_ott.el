@@ -17,7 +17,7 @@
 (add-hook 'ott-mode-hook
           (lambda ()
             (use-local-map ott-mode-map)
-            (define-keybinds ott-mode-map
-              '(("C-c C-c" ott-to-tex)
-                ))
+            ;; (define-keybinds ott-mode-map
+            ;;   '(("C-c C-c" ott-to-tex)
+            ;;     ))
             ))

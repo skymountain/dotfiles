@@ -1,12 +1,13 @@
 ; define keybinds
-(defun make-keybinds (keybinds)
-  (mapcar
-   (lambda (keybind)
-     (cons (eval `(kbd ,(car keybind))) (cadr keybind)))
-   keybinds))
+(defun* make-keybinds (keybinds &key (prefix ""))
+  (let ((prefix (if (string= "" prefix) prefix (concat " " prefix))))
+    (mapcar
+     (lambda (keybind)
+       (cons (eval `(kbd ,(concat prefix (car keybind)))) (cadr keybind)))
+     keybinds)))
  
-(defun define-keybinds (map binds)
-  (let ((keybinds (make-keybinds binds)))
+(defun* define-keybinds (map binds &key (prefix ""))
+  (let ((keybinds (make-keybinds binds :prefix prefix)))
     (mapc (lambda (keybind)
             (define-key map (car keybind) (cdr keybind)))
           keybinds)))
@@ -26,6 +27,7 @@
            ("M-h"     camelCase-backward-kill-word)
            ("M-d"     camelCase-forward-kill-word)
            ("M-f"     camelCase-forward-word)
+           ("M-m"     mark-defun)
            ("C-c C-b" beginning-of-buffer)
            ("C-c C-e" end-of-buffer)
            ("C-x p"   (lambda () (interactive) (other-window -1)))
