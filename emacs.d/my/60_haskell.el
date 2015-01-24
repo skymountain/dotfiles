@@ -1,5 +1,6 @@
 ; haskell-mode
 (require 'haskell-mode)
+(require 'ghc)
 
 (add-hook 'haskell-mode-hook
           (lambda ()
@@ -11,4 +12,8 @@
                 ("C-c t" haskell-doc-show-type)
                 ("C-c C-c" compile)
                 ))
+
+            (ghc-init)
+            (flymake-mode)
+            (message "TEST")
             ))

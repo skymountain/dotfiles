@@ -45,7 +45,8 @@ var boolOptions = {
   supernew    : '`new function () { ... };` and `new Object;` should be tolerated',
   trailing    : 'trailing whitespace rules apply',
   white       : 'strict whitespace rules apply',
-  wsh         : 'if the Windows Scripting Host environment globals should be predefined'
+  wsh         : 'if the Windows Scripting Host environment globals should be predefined',
+  multistr    : 'allow multiline string'
 };
 
 function getOptions(argv) {

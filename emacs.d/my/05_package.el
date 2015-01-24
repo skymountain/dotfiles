@@ -13,6 +13,7 @@
     color-moccur
     color-theme
     flymake-cursor
+    ghc
     gtags
     haskell-mode
     magit

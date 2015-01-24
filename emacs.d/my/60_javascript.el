@@ -35,6 +35,7 @@
         "noempty"
         "undef"
         "trailing"
+        "multistr"
         ))
 
 (setq flymake-javascript-predefined-variables
