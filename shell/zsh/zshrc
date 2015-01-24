@@ -10,7 +10,7 @@ setopt LIST_PACKED
 setopt NO_AUTO_REMOVE_SLASH
 
 autoload -U compinit
-compinit
+compinit -u
 zstyle ':completion:*' list-colors ''
 
 # history
