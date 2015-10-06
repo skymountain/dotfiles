@@ -5,6 +5,8 @@
 (eval-after-load "ispell"
   '(add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
 
+(setq flyspell-mode-hook-list '(text-mode-hook))
+
 (define-keybinds global-map
   '(("C-<tab>" ispell-complete-word)
     ("C-:"     flyspell-auto-correct-previous-word)

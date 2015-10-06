@@ -6,6 +6,8 @@
 (rassq-delete-all 'tex-mode auto-mode-alist)
 (add-to-list 'auto-mode-alist '("\\.o?tex$" . yatex-mode))
 
+(add-to-list 'flyspell-mode-hook-list 'yatex-mode-hook)
+
 ;;   1=Shift JIS
 ;;   2=JIS
 ;;   3=EUC

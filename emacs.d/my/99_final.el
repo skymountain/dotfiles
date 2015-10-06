@@ -11,3 +11,7 @@
     (progn
       (add-to-list 'custom-theme-load-path (expand-file-name "~/.emacs.d/my/themes"))
       (load-theme 'skymountain t)))
+
+; flyspell
+(dolist (hook flyspell-mode-hook-list)
+  (add-hook hook (lambda () (flyspell-mode 1))))
