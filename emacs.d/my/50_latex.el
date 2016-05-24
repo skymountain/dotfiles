@@ -27,6 +27,7 @@
              (font-latex-setup)
              (setq fill-column 80)
              (reftex-mode t)
+             (yank-indent-mode 0)
 
              (global-keybinds-define-keybinds YaTeX-mode-map)
              (define-keybinds YaTeX-mode-map

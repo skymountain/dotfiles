@@ -86,10 +86,12 @@
 (flymake-add-allowed-file-name-masks
  "\\.\\([ch]pp\\)\\|[ch]$"
  (flymake-make-init-on-the-fly
-  "g++" '("-Wall"
-          "-Wextra"
-          "-Winit-self"
-          "-fsyntax-only"
+  "clang++" '("-Wall"
+              "-Wextra"
+              "-Winit-self"
+              "-fsyntax-only"
+              "-std=c++11"
+              "-stdlib=libc++"
           )))
 
 (add-hook 'c++-mode-hook

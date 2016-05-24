@@ -1,6 +1,8 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp"))
 (let ((default-directory (expand-file-name "~/.emacs.d/site-lisp")))
   (normal-top-level-add-subdirs-to-load-path))
+(let ((default-directory (expand-file-name "~/.emacs.d/elpa")))
+  (normal-top-level-add-subdirs-to-load-path))
 
 (require 'init-loader)
 
