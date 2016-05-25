@@ -422,6 +422,10 @@ key.setEditKey('M-h', function (ev) {
     command.deleteBackwardWord(ev);
 }, '前の一単語を削除');
 
+key.setEditKey('C-b', function () {
+    ;
+}, 'No-op', true);
+
 key.setCaretKey([['C-a'], ['^']], function (aEvent) {
     aEvent.target.ksMarked ? goDoCommand("cmd_selectBeginLine") : goDoCommand("cmd_beginLine");
 }, 'キャレットを行頭へ移動');
