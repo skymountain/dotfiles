@@ -1,8 +1,27 @@
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp"))
-(let ((default-directory (expand-file-name "~/.emacs.d/site-lisp")))
+(when load-file-name
+  (setq user-emacs-directory (file-name-directory load-file-name)))
+
+(require 'cl-lib)
+(defun concat-path (&rest segs)
+  (when segs
+    (cl-reduce '(lambda (x y) (concat (file-name-as-directory x) y))
+	       segs)))
+
+(let ((default-directory (locate-user-emacs-file "el-get")))
+  (add-to-list 'load-path
+               (concat-path default-directory "el-get"))
   (normal-top-level-add-subdirs-to-load-path))
-(let ((default-directory (expand-file-name "~/.emacs.d/elpa")))
-  (normal-top-level-add-subdirs-to-load-path))
+
+(add-to-list 'load-path (locate-user-emacs-file "site-lisp"))
+
+(message (locate-user-emacs-file "site-lisp"))(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (create-file-buffer "*installing el-get*")
+    (load-file (locate-user-emacs-file "el-get-install.el"))
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+(el-get-bundle init-loader)
 
 (require 'init-loader)
 

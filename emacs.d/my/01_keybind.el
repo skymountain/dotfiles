@@ -12,21 +12,17 @@
             (define-key map (car keybind) (cdr keybind)))
           keybinds)))
 
-(require 'camelCase)
-(camelCase-mode 1)
-(define-keybinds camelCase-mode-map
-  '(("M-l" nil)
-    ("M-t" nil)
-    ))
+(require 'syntax-subword)
+(syntax-subword-mode 1)
+(setq syntax-subword-skip-spaces 'consistent)
 
 (defun global-keybinds-define-keybinds (map)
   (let ((global-keybinds
          '(("C-j"     backward-char)
-           ("M-j"     camelCase-backward-word)
+           ("M-j"     syntax-subword-backward)
            ("C-h"     delete-backward-char)
-           ("M-h"     camelCase-backward-kill-word)
-           ("M-d"     camelCase-forward-kill-word)
-           ("M-f"     camelCase-forward-word)
+           ("M-h"     syntax-subword-backward-kill)
+
            ("M-m"     mark-defun)
            ("C-c C-b" beginning-of-buffer)
            ("C-c C-e" end-of-buffer)

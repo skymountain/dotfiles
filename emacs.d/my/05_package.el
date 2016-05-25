@@ -1,45 +1,38 @@
-(custom-set-variables
- '(package-archives
-   '(("gnu" . "http://elpa.gnu.org/packages/")
-     ("melpa" . "http://melpa.milkbox.net/packages/")
-     ("marmalade" . "http://marmalade-repo.org/packages/")
-     ))
- )
-(package-initialize)
-
 (defvar required-package-list
   '(anything
+    anything-c-moccur
     auto-complete
     color-moccur
     color-theme
+    ddskk
     flymake-cursor
     ghc
     gtags
     haskell-mode
     magit
+    merlin
     mic-paren
+    moccur-edit
+    ocp-indent
     perl-completion
     point-undo
     popup
     popwin
     pretty-lambdada
+    ; proof-general
     revive
     rust-mode
     scheme-complete
     session
     shell-pop
-    tuareg
+    syntax-subword
+    tuareg-mode
     undo-tree
+    windows
     yaml-mode
+    yatex
     zlc
     ))
 
-(require 'cl)
-
-(let ((not-installed (loop for x in required-package-list
-                           when (not (package-installed-p x))
-                           collect x)))
-  (when not-installed
-    (package-refresh-contents)
-    (dolist (pkg not-installed)
-      (package-install pkg))))
+(dolist (x required-package-list)
+  (eval `(el-get-bundle ,x)))
