@@ -1,6 +1,5 @@
 nethack         on
 startup_message off
-deflogin        on
 autodetach      on
 defutf8         on
 escape          ^z^z
@@ -31,7 +30,7 @@ markkeys /=^s
 markkeys ?=^r
 
 # shell
-shell      $ZSH
+shell      zsh
 setenv     RUN_SCREEN 1
 hardstatus on
 hardstatus alwayslastline "%-w%{= BW}%n %t%{-}%+w %=%m/%d/%Y %c"
