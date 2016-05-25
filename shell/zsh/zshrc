@@ -44,8 +44,8 @@ if [[ -f $aliase_file ]]; then
   source $aliase_file
 fi
 
-local perlbrew=${PERLBREW_ROOT}/etc/bashrc
-if [[ -f $perlbrew ]]; then
+local perlbrew="${PERLBREW_ROOT}/etc/bashrc"
+if [[ -n "$PERLBREW_ROOT" && -f $perlbreww ]]; then
   source $perlbrew
 fi
 

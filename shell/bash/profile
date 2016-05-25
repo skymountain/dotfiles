@@ -1,14 +1,24 @@
-# change keybindings
-xmodmap=~/.xmodmap
-if [ \( -n "$DISPLAY" \) -a \( -e $xmodmap \) ]; then
-  (xmodmap $xmodmap)
+# change keybindings in Linux
+XMODMAP=~/.xmodmap
+if [ -n `which xmodmap` ] && [ -n "$DISPLAY" ] && [ -e $XMODMAP ]; then
+  xmodmap $XMODMAP
 fi
 
 # enviroment variables
+
+if [ -z "$DOTDIR" ]; then
+  echo 'You shoud set $DOTDIR variable'
+fi
+
 ## PATH
 export PATH=$DOTDIR/script:$PATH
-export PATH=$TOOLDIR/bin:$PATH
-export PERLBREW_ROOT=$TOOLDIR/perlbrew
+
+if [ -d "$TOOLDIR" ]; then
+  export PATH=$TOOLDIR/bin:$PATH
+  if [ -d "$TOOLDIR/perlbrew"  ]; then
+    export PERLBREW_ROOT=$TOOLDIR/perlbrew
+  fi
+fi
 
 export PAGER='less -R'
 
@@ -23,13 +33,13 @@ if [ -n "$EMACS" ]; then
 fi
 
 # OPAM
-eval `opam config env`
-export OCAML_ANNOT=1
-
-. /home/lab8/t-sekiym/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+if [ -n `which opam` ]; then
+  eval `opam config env`
+  export OCAML_ANNOT=1
+  . $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+fi
 
 # CABAL
-cabal_path=$HOME/.cabal/bin
-if [ -d "$cabal_path" ]; then
-  export PATH=$cabal_path:$PATH
+if [ -n `which cabal` ]; then
+  export PATH=$HOME/.cabal/bin:$PATH
 fi

@@ -30,7 +30,7 @@ alias gstash='git stash'
 alias screen='screen -U'
 
 # emacs
-alias e='$EMACS -nw'
+alias e=emacs
 
 # local aliases
 local=$DOTDIR/shell/aliases.local
