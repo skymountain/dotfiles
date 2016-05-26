@@ -14,7 +14,7 @@
 
 (add-to-list 'load-path (locate-user-emacs-file "site-lisp"))
 
-(message (locate-user-emacs-file "site-lisp"))(unless (require 'el-get nil 'noerror)
+(unless (require 'el-get nil 'noerror)
   (with-current-buffer
       (create-file-buffer "*installing el-get*")
     (load-file (locate-user-emacs-file "el-get-install.el"))
