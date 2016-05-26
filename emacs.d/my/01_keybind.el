@@ -22,6 +22,7 @@
            ("M-j"     syntax-subword-backward)
            ("C-h"     delete-backward-char)
            ("M-h"     syntax-subword-backward-kill)
+           ("M-f"     syntax-subword-forward)
 
            ("M-m"     mark-defun)
            ("C-c C-b" beginning-of-buffer)
