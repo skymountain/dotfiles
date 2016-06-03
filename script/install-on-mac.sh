@@ -5,6 +5,7 @@ DOTDIR=$DOTDIR/..
 DOTDIR=$(cd $DOTDIR && pwd)
 
 ln -s $DOTDIR/emacs.d $HOME/.emacs.d
+mkdir -p $HOME/.emacs.d/el-get
 
 git config --global core.excludesfile $DOTDIR/git/gitignore
 ln -s $DOTDIR/misc/aspell.conf $HOME/.aspell.conf
