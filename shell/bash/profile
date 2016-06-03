@@ -1,6 +1,6 @@
 # change keybindings in Linux
 XMODMAP=~/.xmodmap
-if [ -n `which xmodmap` ] && [ -n "$DISPLAY" ] && [ -e $XMODMAP ]; then
+if [ -n `which xmodmap 2> /dev/null` ] && [ -n "$DISPLAY" ] && [ -e $XMODMAP ]; then
   xmodmap $XMODMAP
 fi
 
@@ -33,13 +33,13 @@ if [ -n "$EMACS" ]; then
 fi
 
 # OPAM
-if [ -n `which opam` ]; then
+if [ -n `which opam 2> /dev/null` ]; then
   eval `opam config env`
   export OCAML_ANNOT=1
   . $HOME/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
 fi
 
 # CABAL
-if [ -n `which cabal` ]; then
+if [ -n `which cabal 2> /dev/null` ]; then
   export PATH=$HOME/.cabal/bin:$PATH
 fi
