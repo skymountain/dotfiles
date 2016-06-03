@@ -25,6 +25,7 @@
     scheme-complete
     session
     shell-pop
+    smartparens
     syntax-subword
     tuareg-mode
     undo-tree
