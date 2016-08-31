@@ -15,7 +15,10 @@
                 ocaml-mode
                 )))
 
-; undo tree
+; undo
+(require 'undohist)
+(undohist-initialize)
+
 (require 'undo-tree)
 (global-undo-tree-mode 1)
 (define-keybinds global-map
@@ -93,6 +96,10 @@ Strings matched with STRING in template file are replaced by REPLACE, which is s
 
 ; isearch-grep
 (require 'isearch-grep)
+
+; isearch
+(define-keybinds isearch-mode-map
+  '(("C-h" isearch-delete-char)))
 
 ; moccur
 (require 'color-moccur)

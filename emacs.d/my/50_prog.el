@@ -56,12 +56,5 @@
   '(ac-auto-show-menu 0.5)
   )
 
-; highlight lines over limit
-(defun highlight-line-over-limit (mode limit)
-  (let ((regexp (concat "^[^\n]\\{" (number-to-string limit) "\\}\\(.*\\)$")))
-    (font-lock-add-keywords mode
-                            `((,regexp 1 font-lock-warning-face t)))
-    ))
-
 ; etc.
 (which-func-mode 1)

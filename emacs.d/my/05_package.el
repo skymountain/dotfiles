@@ -5,6 +5,8 @@
     color-moccur
     color-theme
     ddskk
+    elpy
+    filladapt
     flymake-cursor
     ghc
     gtags
@@ -29,6 +31,8 @@
     syntax-subword
     tuareg-mode
     undo-tree
+    undohist
+    whitespace
     windows
     yaml-mode
     yatex

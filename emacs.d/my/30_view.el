@@ -81,3 +81,21 @@
 (defun view-mode-globalize (&optional arg)
   (interactive "P")
   (view-mode-globalize-function arg))
+
+
+; whitespace
+(require 'whitespace)
+(setq whitespace-style
+      '(
+        face
+        trailing
+        tabs
+        lines-tail
+        ))
+(setq whitespace-action nil)
+(setq whitespace-line-column column-width)
+(global-whitespace-mode 1)
+(set-face-attribute 'whitespace-trailing nil
+                    :background "gray20"
+                    :foreground "violet"
+                    :underline t)

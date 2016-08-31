@@ -61,6 +61,11 @@ function echo_prompt {
 
   prompt="%{$fg[green]%}%n@%{$reset_color%} ";
   prompt+="%{$fg[cyan]%}%30<..<%~$%{$reset_color%} ";
+
+  if [[ -n $VIRTUAL_ENV ]]; then
+      base=`basename $VIRTUAL_ENV`
+      prompt="%{$fg[blue]%}($base) $prompt"
+  fi;
 }
 add-zsh-hook precmd echo_prompt
 
@@ -114,3 +119,18 @@ if [ `which -s omake` ]; then
   export OMAKEPATH=$DOTDIR/omake:$OMAKEPATH
   export OMAKEPATH=.:$OMAKEPATH
 fi
+
+# python
+## virtualenv
+
+function activate-virtualenv() {
+  dir=${1:-$PWD}
+  if [[ "$dir" == '/' ]]; then
+    echo 'Not found directory with bin/activate'
+  elif [[ -a "$dir/bin/activate" ]]; then
+    echo "Activating $dir/bin/activate"
+    source "$dir/bin/activate"
+  else
+    activate-virtualenv `dirname "$dir"`
+  fi
+}

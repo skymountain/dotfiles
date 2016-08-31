@@ -21,19 +21,19 @@
       (expand-file-name "YATEHELP.jp" data-directory))
 
 (add-hook 'yatex-mode-hook
-          '(lambda ()
-             (require 'yatexprc)
-             (require 'font-latex)
-             (font-latex-setup)
-             (setq fill-column 80)
-             (reftex-mode t)
-             (yank-indent-mode 0)
+          (lambda ()
+            (require 'yatexprc)
+            (require 'font-latex)
+            (font-latex-setup)
+            (setq fill-column column-width)
+            (reftex-mode t)
+            (yank-indent-mode nil)
 
-             (global-keybinds-define-keybinds YaTeX-mode-map)
-             (define-keybinds YaTeX-mode-map
-               '(("C-c C-c" recompile)
-                 ))
-             ))
+            (global-keybinds-define-keybinds YaTeX-mode-map)
+            (define-keybinds YaTeX-mode-map
+              '(("C-c C-c" recompile)
+                ))
+            ))
 
 ; bibtex
 (add-hook 'bibtex-mode-hook

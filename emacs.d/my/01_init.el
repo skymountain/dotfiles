@@ -4,6 +4,7 @@
 (set-terminal-coding-system 'utf-8-unix)
 (prefer-coding-system 'utf-8-unix)
 
+(menu-bar-mode 0)
 (if (fboundp 'tool-bar-mode)
     (tool-bar-mode 0))
 (if (fboundp 'toggle-scroll-bar)
@@ -23,7 +24,8 @@
 (column-number-mode 1)
 
 (put 'upcase-region 'disabled nil)
-
+(setq-default tab-width 2)
+(setq-default column-width 80)
 (custom-set-variables
   '(compilation-window-height 10)
   '(tab-width 2)
@@ -35,7 +37,7 @@
   '(history-length 1000)
   '(transient-mark-mode t)
   '(indent-tabs-mode nil)
-  '(fill-column 80)
+  `(fill-column ,column-width)
 )
 
 (defvar vc-entries

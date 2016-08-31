@@ -17,5 +17,7 @@
                   ("C-c p" proof-prf)
                   ("C-c RET" proof-goto-point)
                   ))
+              (show-paren-mode 0)
+              (undo-tree-mode 1)
               ))
 )
