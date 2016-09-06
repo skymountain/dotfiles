@@ -5,6 +5,9 @@
     color-moccur
     color-theme
     ddskk
+    dired-hacks
+    dired-details
+    dired-details+
     elpy
     filladapt
     flymake-cursor
