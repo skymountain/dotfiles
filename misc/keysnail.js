@@ -523,3 +523,11 @@ key.setCaretKey('M-p', function () {
 key.setCaretKey('M-n', function () {
     command.walkInputElement(command.elementsRetrieverButton, false, true);
 }, '前のボタンへフォーカスを当てる');
+
+
+// ========================= KKK ========================== //
+
+plugins.options['kkk.sites'] = [
+  'https?://github.com/',
+  'https?://twitter.com/',
+];
