@@ -134,3 +134,7 @@ function activate-virtualenv() {
     activate-virtualenv `dirname "$dir"`
   fi
 }
+
+# word style
+autoload -U select-word-style
+select-word-style bash
