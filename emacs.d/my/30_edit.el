@@ -1,5 +1,5 @@
 ; yank indent mode
-(global-yank-indent-mode 1)
+(global-yank-indent-mode 0)
 (setq yank-indent-enabled-major-mode-list
       (append yank-indent-enabled-major-mode-list
               '(emacs-lisp-mode
