@@ -81,3 +81,44 @@
 (defun view-mode-globalize (&optional arg)
   (interactive "P")
   (view-mode-globalize-function arg))
+
+
+; whitespace
+(require 'whitespace)
+(setq whitespace-style
+      '(
+        face
+        trailing
+        tabs
+        lines-tail
+        ))
+(setq whitespace-action nil)
+(setq whitespace-line-column column-width)
+(global-whitespace-mode 1)
+(set-face-attribute 'whitespace-trailing nil
+                    :background "gray20"
+                    :foreground "violet"
+                    :underline t)
+
+;; dired
+(require 'dired-subtree)
+(require 'dired-details+)
+(dired-details-install)
+
+(add-hook 'dired-mode-hook
+          (lambda ()
+            (define-keybinds dired-mode-map
+              '(("j" next-line)
+                ("k" previous-line)
+                ("i" dired-subtree-toggle)
+                ("<tab>" dired-subtree-toggle)
+                ("@" dired-details-toggle)
+                ))
+            ))
+
+(setq dired-details-hide-link-targets nil)
+(setq dired-details-initially-hide t)
+(add-hook 'dired-subtree-after-insert-hook
+          (lambda ()
+            (dired-details-delete-overlays)
+            (dired-details-activate)))

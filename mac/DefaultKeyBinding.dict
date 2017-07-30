@@ -1,3 +1,15 @@
+/*
+  ~/Library/KeyBindings/DefaultKeyBinding.dict
+  You shouldn't symlink this file because some applications don't load symlinks.
+*/
+
 {
   "^b" = ();
+  "^j" = moveBackward:;
+  "~j" = moveWordBackward:;
+  "~f" = moveWordForward:;
+  "^ " = setMark:;
+  "^_" = undo:;
+  "^w" = deleteToMark:;
+  "~w" = (deleteToMark:, setMark:, yank:, swapWithMark:);
 }

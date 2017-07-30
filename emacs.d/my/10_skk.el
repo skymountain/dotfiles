@@ -42,11 +42,11 @@
 (setq skk-jisyo (expand-file-name "~/dot/dict/user-jisyo"))
 
 ; specify dictionaries
-(setq skk-search-prog-list
-      '((skk-search-jisyo-file skk-jisyo 0 t)
-        (skk-search-jisyo-file (expand-file-name "~/.dict/skk/SKK-JISYO.L") 10000)
-        (skk-search-jisyo-file (expand-file-name "~/.dict/skk/SKK-JISYO.geo") 10000)
-        (skk-search-jisyo-file (expand-file-name "~/.dict/skk/SKK-JISYO.jinmei") 10000)))
+;; (setq skk-search-prog-list
+;;       '((skk-search-jisyo-file skk-jisyo 0 t)
+;;         (skk-search-jisyo-file (expand-file-name "~/.dict/skk/SKK-JISYO.L") 10000)
+;;         (skk-search-jisyo-file (expand-file-name "~/.dict/skk/SKK-JISYO.geo") 10000)
+;;         (skk-search-jisyo-file (expand-file-name "~/.dict/skk/SKK-JISYO.jinmei") 10000)))
 
 ; 10分放置すると個人辞書が自動的に保存される設定
 (defvar skk-auto-save-jisyo-interval 600)

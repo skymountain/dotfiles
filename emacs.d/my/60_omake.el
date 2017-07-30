@@ -9,5 +9,7 @@
     ("M-O" omake-run)
     ))
 
+(add-to-list 'auto-mode-alist '("^OMakefile$" . omake-mode))
+(add-to-list 'auto-mode-alist '("^OMakeroot$" . omake-mode))
 (call-function-in-group 'ignore-files-by-regexp-list
                         "\\.omc$")

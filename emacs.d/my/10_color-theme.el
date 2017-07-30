@@ -40,7 +40,7 @@
     (fl-type-face ((t (:foreground "yellow"))))
     (font-lock-builtin-face ((t (:foreground "LightSteelBlue"))))
 
-    (font-lock-comment-face ((t (:foreground "SteelBlue"))))
+    (font-lock-comment-face ((t (:foreground "DarkSea"))))
     (font-lock-constant-face ((t (:foreground "Aquamarine"))))
     (font-lock-doc-string-face ((t (:foreground "LightSalmon"))))
     (font-lock-function-name-face ((t (:foreground "medium slate blue"))))
@@ -157,12 +157,15 @@
     (widget-inactive-face ((t (:foreground "light gray"))))
     (widget-single-line-field-face ((t (:background "dim gray"))))
 
-    ;; custom
+    ;; anything
     (anything-file-name ((t (:foreground "white"))))
     (anything-dir-priv ((t (:background "Gray15" :foreground "SteelBlue1"))))
     (paren-face-match ((t (:bold t :background "Gray20"))))
     (flymake-errline ((t (:background "firebrick"))))
     (flymake-warnline ((t (:background "gold"))))
+
+    ;; tuareg
+    (tuareg-font-lock-governing-face ((t (:foreground "SteelBlue"))))
     ))
 
 (defun my-color-theme ()

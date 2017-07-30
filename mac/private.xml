@@ -1,7 +1,9 @@
+<!-- ~/Library/Application Support/Karabiner/private.xml -->
+
 <?xml version="1.0"?>
 <root>
   <item>
-    <name>My KeyRemap4MacBook</name>
+    <name>My KeyRemap</name>
     <list>
       <item>
         <name>For Firefox</name>
@@ -15,14 +17,14 @@
         </list>
       </item>
       <item>
-        <name>For Japanese</name>
-        <list>
-          <item>
-            <appendix>OPTION_L to KANA-EISUU Toggle</appendix>
-            <identifier>remap.my.japanese.option_l_to_kana_eisuu_toggle</identifier>
-            <autogen>--KeyToKey-- KeyCode::OPTION_L, KeyCode::VK_JIS_TOGGLE_EISUU_KANA</autogen>
-          </item>
-        </list>
+        <name>Eisuu to Option_L</name>
+        <identifier>remap.my.eisuu_to_option_l</identifier>
+        <autogen>--KeyToKey-- KeyCode::JIS_EISUU, KeyCode::OPTION_L</autogen>
+      </item>
+      <item>
+        <name>Kana to Control_L</name>
+        <identifier>remap.my.kana_to_control_l</identifier>
+        <autogen>--KeyToKey-- KeyCode::JIS_KANA, KeyCode::CONTROL_L</autogen>
       </item>
     </list>
   </item>

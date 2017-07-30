@@ -10,39 +10,38 @@
 
 (add-hook 'c-mode-common-hook
           (lambda ()
-	    (require 'cpp-complt)
-	    (cpp-complt-init)
+            (when (require 'cpp-complt nil t)
+              (cpp-complt-init))
 
-	    (c-set-style "gnu")
-	    (setq comment-start-skip "*")
-	    (c-toggle-hungry-state 1)
+            (c-set-style "gnu")
+            (setq comment-start-skip "*")
+            (c-toggle-hungry-state 1)
 
-      (c-set-offset 'innamespace 0)
-      (c-set-offset 'arglist-close 0)
-      (c-set-offset 'arglist-intro '+)
-      (c-set-offset 'inline-open 0)
-      (c-set-offset 'topmost-intro-cont 'cpp-custom-indent)
+            (c-set-offset 'innamespace 0)
+            (c-set-offset 'arglist-close 0)
+            (c-set-offset 'arglist-intro '+)
+            (c-set-offset 'inline-open 0)
+            (c-set-offset 'topmost-intro-cont 'cpp-custom-indent)
 
-	    (let ((maps (list c-mode-map c++-mode-map)))
-	      (dolist (map maps)
-          (global-keybinds-define-keybinds map)
-          (define-keybinds map
-            '(("#"         cpp-complt-instruction-completing)
-              ("C-c #"     cpp-complt-ifdef-region)
-              ("C-c #"     cpp-complt-ifdef-region)
-              ("C-c C-e"   end-of-buffer)
-              ("C-c C-b"   beginning-of-buffer)
-              ("C-c m"     c-macro-expand)
-              ("C-t"       ff-find-other-file)
-              ("C-c C-M-c" uncomment-region)))))
-	    ))
+            (let ((maps (list c-mode-map c++-mode-map)))
+              (dolist (map maps)
+                (global-keybinds-define-keybinds map)
+                (define-keybinds map
+                  '(("#"         cpp-complt-instruction-completing)
+                    ("C-c #"     cpp-complt-ifdef-region)
+                    ("C-c #"     cpp-complt-ifdef-region)
+                    ("C-c C-e"   end-of-buffer)
+                    ("C-c C-b"   beginning-of-buffer)
+                    ("C-c m"     c-macro-expand)
+                    ("C-t"       ff-find-other-file)
+                    ("C-c C-M-c" uncomment-region)))))
+            ))
 
 ; c++-mode
 (add-hook 'c++-mode-hook
           (lambda ()
             (setq comment-start "// ")
             (setq comment-end   "")
-            (highlight-line-over-limit 'c++-mode 80)
             ))
 
 ; include path
@@ -86,10 +85,12 @@
 (flymake-add-allowed-file-name-masks
  "\\.\\([ch]pp\\)\\|[ch]$"
  (flymake-make-init-on-the-fly
-  "g++" '("-Wall"
-          "-Wextra"
-          "-Winit-self"
-          "-fsyntax-only"
+  "clang++" '("-Wall"
+              "-Wextra"
+              "-Winit-self"
+              "-fsyntax-only"
+              "-std=c++11"
+              "-stdlib=libc++"
           )))
 
 (add-hook 'c++-mode-hook

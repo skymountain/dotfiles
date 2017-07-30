@@ -10,11 +10,17 @@
 /emacs.d/.org-id-locations
 /emacs.d/ac-comphist.dat
 /emacs.d/anything-c-adaptive-history
+/emacs.d/auto-save-list
 /emacs.d/conf/auto-complete
 /emacs.d/conf/cmigemo
 /emacs.d/conf/sdic
+/emacs.d/el-get
+/emacs.d/elpa
+/emacs.d/emacs.d
+/emacs.d/ido.last
 /emacs.d/site-lisp
 /emacs.d/tramp
+/emacs.d/recentf
 
 # script
 /script/git-publish-branch

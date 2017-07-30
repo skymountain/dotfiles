@@ -1,38 +1,40 @@
 ; YaTeX
-(require 'yatex)
+(when (require 'yatex nil t)
 
-; automatically change major-mode to yatex-mode if the extension is .tex
+  ; automatically change major-mode to yatex-mode if the extension is .tex
 
-(rassq-delete-all 'tex-mode auto-mode-alist)
-(add-to-list 'auto-mode-alist '("\\.o?tex$" . yatex-mode))
+  (rassq-delete-all 'tex-mode auto-mode-alist)
+  (add-to-list 'auto-mode-alist '("\\.o?tex$" . yatex-mode))
 
-(add-to-list 'flyspell-mode-hook-list 'yatex-mode-hook)
+  (add-to-list 'flyspell-mode-hook-list 'yatex-mode-hook)
 
-;;   1=Shift JIS
-;;   2=JIS
-;;   3=EUC
-;;   4=UTF-8
-(setq YaTeX-kanji-code 4)
-(setq tex-command (expand-file-name "~/.emacs.d/script/tex/texpdf.sh"))
-(setq dvi2-command "dviout");
-(setq YaTeX-nervous nil)
+  ;;   1=Shift JIS
+  ;;   2=JIS
+  ;;   3=EUC
+  ;;   4=UTF-8
+  (setq YaTeX-kanji-code 4)
+  (setq tex-command (expand-file-name "~/.emacs.d/script/tex/texpdf.sh"))
+  (setq dvi2-command "dviout");
+  (setq YaTeX-nervous nil)
 
-(setq YaTeX-help-file
-      (expand-file-name "YATEHELP.jp" data-directory))
+  (setq YaTeX-help-file
+        (expand-file-name "YATEHELP.jp" data-directory))
 
-(add-hook 'yatex-mode-hook
-          '(lambda ()
-             (require 'yatexprc)
-             (require 'font-latex)
-             (font-latex-setup)
-             (setq fill-column 80)
-             (reftex-mode t)
+  (add-hook 'yatex-mode-hook
+            (lambda ()
+              (require 'yatexprc)
+              (require 'font-latex)
+              (font-latex-setup)
+              (setq fill-column column-width)
+              (reftex-mode t)
+              (yank-indent-mode nil)
 
-             (global-keybinds-define-keybinds YaTeX-mode-map)
-             (define-keybinds YaTeX-mode-map
-               '(("C-c C-c" recompile)
-                 ))
-             ))
+              (global-keybinds-define-keybinds YaTeX-mode-map)
+              (define-keybinds YaTeX-mode-map
+                '(("C-c C-c" recompile)
+                  ))
+              ))
+  )
 
 ; bibtex
 (add-hook 'bibtex-mode-hook

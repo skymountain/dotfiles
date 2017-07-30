@@ -1,5 +1,5 @@
 ; yank indent mode
-(global-yank-indent-mode 1)
+(global-yank-indent-mode 0)
 (setq yank-indent-enabled-major-mode-list
       (append yank-indent-enabled-major-mode-list
               '(emacs-lisp-mode
@@ -15,7 +15,10 @@
                 ocaml-mode
                 )))
 
-; undo tree
+; undo
+(require 'undohist)
+(undohist-initialize)
+
 (require 'undo-tree)
 (global-undo-tree-mode 1)
 (define-keybinds global-map
@@ -70,14 +73,33 @@ Strings matched with STRING in template file are replaced by REPLACE, which is s
   
   
 ; auto insert brackets
-(require 'brackets)
+(require 'smartparens-config)
+(smartparens-mode 1)
 
 ; diff
-(load "diff-with-original")
-(load "ediff-with-original")
+(defun ediff-current-buffer-with-original-file ()
+  (interactive)
+  (when buffer-file-name
+    (let* ((file buffer-file-name)
+           (buffer (current-buffer))
+           (orig-buffer (get-buffer-create (concat "*original " file "*"))))
+      (progn
+        (set-buffer orig-buffer)
+        (setq buffer-read-only nil)
+        (buffer-disable-undo)
+        (erase-buffer)
+        (insert-file file)
+        (setq buffer-read-only t)
+        (set-buffer-modified-p nil)
+        (ediff-buffers orig-buffer buffer)
+        ))))
 
 ; isearch-grep
 (require 'isearch-grep)
+
+; isearch
+(define-keybinds isearch-mode-map
+  '(("C-h" isearch-delete-char)))
 
 ; moccur
 (require 'color-moccur)
