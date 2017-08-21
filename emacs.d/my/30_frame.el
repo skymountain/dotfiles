@@ -16,3 +16,7 @@
     ))
 
 ;; (setq display-buffer-function 'popwin:display-buffer)
+
+(require 'switch-window)
+(define-key global-map (kbd "C-x C-o") 'switch-window)
+(setq switch-window-shortcut-style 'qwerty)

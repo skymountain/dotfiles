@@ -39,7 +39,7 @@
 ; specify sitcky key
 (setq skk-sticky-key ";")
 
-(setq skk-jisyo (expand-file-name "~/dot/dict/user-jisyo"))
+;; (setq skk-jisyo (expand-file-name "~/dot/dict/user-jisyo"))
 
 ; specify dictionaries
 ;; (setq skk-search-prog-list

@@ -13,8 +13,8 @@
                 ("M-RET" anything-execute-persistent-action)
                 ))))
 
-(require 'anything-c-moccur)
-(define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch)
+;; (require 'anything-c-moccur)
+;; (define-key isearch-mode-map (kbd "C-o") 'anything-c-moccur-from-isearch)
 
 (define-keybinds global-map
   '(("M-l" anything-for-files)

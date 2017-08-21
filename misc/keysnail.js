@@ -530,4 +530,6 @@ key.setCaretKey('M-n', function () {
 plugins.options['kkk.sites'] = [
   'https?://github.com/',
   'https?://twitter.com/',
+//  'https?://[a-zA-Z0-9]*.slack.com/',
+  'https?://youtube.com/',
 ];

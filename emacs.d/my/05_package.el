@@ -1,6 +1,7 @@
 (defvar required-package-list
   '(anything
-    anything-c-moccur
+    ;; anything-c-moccur
+    auctex
     auto-complete
     color-moccur
     color-theme
@@ -32,6 +33,7 @@
     shell-pop
     smartparens
     syntax-subword
+    switch-window
     tuareg-mode
     undo-tree
     undohist
