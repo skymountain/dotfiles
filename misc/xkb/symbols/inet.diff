@@ -1,0 +1,4 @@
+//    key <HENK>   {      [ Henkan                ]       };
+//    key <MUHE>   {      [ Muhenkan              ]       };
+    key <HENK>   {      [ Control_R             ]       };
+    key <MUHE>   {      [ Alt_L                 ]       };
