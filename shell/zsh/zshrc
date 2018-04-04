@@ -113,7 +113,7 @@ if [ -e $local ]; then
 fi
 
 # omake
-if [ `which -s omake` ]; then
+if [ `which omake` ]; then
   omake_stdlib=`echo 'echo $(absname $(STDLIB))' | omake --shell`
   export OMAKEPATH=$omake_stdlib:$OMAKEPATH
   export OMAKEPATH=$DOTDIR/omake:$OMAKEPATH
