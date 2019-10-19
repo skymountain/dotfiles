@@ -11,6 +11,7 @@ mkdir -p $HOME/.emacs.d/site-lisp 2> /dev/null
 git config --global core.excludesfile $DOTDIR/git/gitignore
 ln -s $DOTDIR/misc/aspell.conf $HOME/.aspell.conf
 ln -s $DOTDIR/misc/keysnail.js $HOME/.keysnail.js
+ln -s $DOTDIR/misc/imwheelrc $HOME/.imwheelrc
 
 ln -s $DOTDIR/screen/screenrc $HOME/.screenrc
 ln -s $DOTDIR/shell/zsh/zshrc $HOME/.zshrc
