@@ -20,8 +20,8 @@
     mic-paren
     moccur-edit
     ocp-indent
-    perl-completion
-    point-undo
+    ;; perl-completion
+    ;; point-undo
     popup
     popwin
     pretty-lambdada
@@ -37,7 +37,7 @@
     tuareg-mode
     undo-tree
     undohist
-    whitespace
+    ;; whitespace
     windows
     yaml-mode
     yatex

@@ -1,0 +1,3 @@
+<     key <AB11> { [ underscore, backslash] };
+---
+>     key <AB11> { [ backslash, underscore] };
