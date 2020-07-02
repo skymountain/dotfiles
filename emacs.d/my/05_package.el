@@ -19,6 +19,7 @@
     merlin
     mic-paren
     moccur-edit
+    markdown-mode
     ocp-indent
     ;; perl-completion
     ;; point-undo
