@@ -14,7 +14,7 @@
     flymake-cursor
     ghc
     gtags
-    haskell-mode
+    ;; haskell-mode
     magit
     merlin
     mic-paren
@@ -22,7 +22,7 @@
     markdown-mode
     ocp-indent
     ;; perl-completion
-    ;; point-undo
+    point-undo
     popup
     popwin
     pretty-lambdada
