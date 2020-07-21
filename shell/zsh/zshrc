@@ -135,7 +135,7 @@ select-word-style bash
 test -r /home/skymountain/.opam/opam-init/init.zsh && . /home/skymountain/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # omake
-if [ `which omake` ]; then
+if type "omake" > /dev/null 2>&1; then
   omake_stdlib=`echo 'echo $(absname $(STDLIB))' | omake --shell`
   export OMAKEPATH=$omake_stdlib:$OMAKEPATH
   export OMAKEPATH=$DOTDIR/omake:$OMAKEPATH
