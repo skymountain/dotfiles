@@ -20,6 +20,8 @@
 /emacs.d/ido.last
 /emacs.d/site-lisp
 /emacs.d/tramp
+/emacs.d/transient
+/emacs.d/undohist
 /emacs.d/recentf
 
 # script
