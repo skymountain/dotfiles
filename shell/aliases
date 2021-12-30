@@ -43,3 +43,7 @@ ssh=$DOTDIR/shell/ssh.local
 if [ -e $ssh ]; then
   . "$ssh"
 fi
+
+# Windows
+alias sumatra=SumatraPDF.exe
+alias sumatran='SumatraPDF.exe -new-window'
