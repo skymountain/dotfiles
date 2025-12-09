@@ -1,7 +1,7 @@
 (defvar required-package-list
   '(anything
     ;; anything-c-moccur
-    auctex
+    ;; auctex
     auto-complete
     color-moccur
     color-theme
@@ -12,7 +12,7 @@
     elpy
     filladapt
     flymake-cursor
-    ghc
+    ;; ghc
     gtags
     ;; haskell-mode
     magit

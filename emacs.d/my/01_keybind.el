@@ -1,4 +1,5 @@
 ; define keybinds
+(require 'cl)
 (defun* make-keybinds (keybinds &key (prefix ""))
   (let ((prefix (if (string= "" prefix) prefix (concat " " prefix))))
     (mapcar
