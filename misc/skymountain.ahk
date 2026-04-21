@@ -1,16 +1,19 @@
-#InstallKeybdHook
+#Requires AutoHotkey v2.0+			
+
 #UseHook
 
+InstallKeybdHook
+	
 SetKeyDelay 0
 
 ; whether ctrl-c is pressed
-is_pre_c = 0
+is_pre_c := 0
 
 ; whether ctrl-x is pressed
-is_pre_x = 0
+is_pre_x := 0
 
 ; whether ctrl-space is pressed
-is_pre_spc = 0
+is_pre_spc := 0
 
 ; whether you are in applications for which keybindings are disabled
 excluded()
@@ -19,6 +22,9 @@ excluded()
     return 1
 
   if (WinActive("ahk_class MSPaintApp"))                    ; Paint
+    return 1
+
+  if (WinActive("ahk_exe Code.exe"))                        ; VSCode
     return 1
 
   return 0
@@ -37,78 +43,78 @@ is_browser()
 reset()
 {
   global
-  is_pre_c = 0
-  is_pre_x = 0
-  is_pre_spc = 0
+  is_pre_c := 0
+  is_pre_x := 0
+  is_pre_spc := 0
 }
 
 delete_backward_char()
 {
-  send {bs}
-  global is_pre_spc = 0
+  Send "{BS}"
+  global is_pre_spc := 0
   return
 }
 
 open_line()
 {
-  send {end}{enter}{up}
-  global is_pre_spc = 0
+  Send "{End}{Enter}{Up}"
+  global is_pre_spc := 0
   return
 }
 
 quit()
 {
-  send {esc}
-  global is_pre_spc = 0
+  Send "{Esc}"
+  global is_pre_spc := 0
   return
 }
 
 newline()
 {
-  send {enter}
-  global is_pre_spc = 0
+  Send "{Enter}"
+  global is_pre_spc := 0
   return
 }
 
 indent_for_tab_command()
 {
-  send {tab}
-  global is_pre_spc = 0
+  Send "{Tab}"
+  global is_pre_spc := 0
   return
 }
 
 newline_and_indent()
 {
-  send {enter}{tab}
-  global is_pre_spc = 0
+  Send "{Enter}{Tab}"
+  global is_pre_spc := 0
   return
 }
 
 isearch_forward()
 {
-  send ^f
-  global is_pre_spc = 0
+  Send "^f"
+  global is_pre_spc := 0
   return
 }
 
 isearch_backward()
 {
-  send ^f
-  global is_pre_spc = 0
+  Send "^f"
+  global is_pre_spc := 0
   return
 }
 
 yank()
 {
-  send ^v
-  global is_pre_spc = 0
+  Send "^v"
+  global is_pre_spc := 0
   return
 }
 
 kill_app()
 {
-  send !{F4}
-  global is_pre_x = 0
+  Send "!{F4}"
+  global is_pre_x := 0
   return
 }
 
@@ -116,9 +122,9 @@ forward_char()
 {
   global
   if (is_pre_spc)
-    send +{right}
+    Send "+{Right}"
   else
-    send {right}
+    Send "{Right}"
   return
 }
 
@@ -126,9 +132,9 @@ scroll_up()
 {
   global
   if (is_pre_spc)
-    send +{pgup}
+    Send "+{PgUp}"
   else
-    send {pgup}
+    Send "{PgUp}"
   return
 }
 
@@ -136,451 +142,543 @@ scroll_down()
 {
   global
   if (is_pre_spc)
-    send +{pgdn}
+    Send "+{PgDn}"
   else
-    send {pgdn}
+    Send "{PgDn}"
   return
 }
 
 ; toggle ctrl+x
 ^x::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
-   }
+    Send A_ThisHotkey
+  }
   else
   {
     reset()
-    is_pre_x = 1
+    is_pre_x := 1
   }
-return
+  return
+}
 
 ; toggle ctrl+c or kill applications
 ^c::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    send A_ThisHotkey
   }
   else
   {
     if (is_pre_x)
       kill_app()
     reset()
-    is_pre_c = 1
+    is_pre_c := 1
   }
-return
+  return
+}
 
 ; forward char or find file
 ^f::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    send A_ThisHotkey
   }
   else
   {
     if (is_pre_x) ; find file
     {
-      send ^o
+      Send "^o"
     }
     else        ; forward char
     {
       if (is_pre_spc)
-        send +{right}
+        Send "+{Right}"
       else
-        send {right}
+        Send "{Right}"
     }
     reset()
   }
-return
+  return
+}
 
 ; forward word
 !f::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotKey%
+    Send A_ThisHotKey
   }
   else
   {
-    send {ctrl down}{right down}{right up}{ctrl up}
+    Send "{Ctrl Down}{Right Down}{Right Up}{Ctrl Up}"
     reset()
   }
-return
+  return
+}
 
 ; delete char
 ^d::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    Send A_ThisHotkey
   }
   else
   {
-    send {del}
+    Send "{Del}"
     reset()
   }
-return
+  return
+}
 
 ; delete word
 !d::
+{
   if (excluded())
   {
-    send %A_ThisHotkey%
+    Send A_ThisHotkey
   }
   else
   {
-    send {ctrl down}{delete down}{delete up}{ctrl up}
+    Send "{Ctrl Down}{Delete Down}{Delete Up}{Ctrl Up}"
     reset()
   }
-return
+  return
+}
 
 ; delete backward char
 ^h::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    send A_ThisHotkey
   }
   else
   {
-    send {bs}
+    Send "{Bs}"
     reset()
   }
-return
+  return
+}
 
 ; kill line or next tab in browsing
 
 ^k::
+{ 
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    send A_ThisHotkey
   }
   else
   {
     if (is_browser() and is_pre_c)
     {
-      send {ctrl down}{shift down}{tab}{shift up}{ctrl up}
+      Send "{Ctrl Down}{Shift Down}{Tab}{Shift Up}{Ctrl Up}"
     }
     else
     {
-      send {shift down}{end}{shift up}
-      sleep 50 ; [ms] this value depends on your environment
-      send ^x
+      Send "{Shift Down}{End}{Shift Up}"
+      Sleep 50 ; [ms] this value depends on your environment
+      Send "^x"
     }
     reset()
   }
-return
+  return
+}
 
 ; reset
 ^g::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    Send A_ThisHotkey
   }
   else
   {
     reset()
-    send {esc}
-    send %A_ThisHotkey%
+    Send "{Esc}"
+    Send A_ThisHotkey
   }
-return
+  return
+}
 
 ; new line
 ^m::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    send A_ThisHotkey
   }
   else
   {
-    send {enter}
+    Send "{Enter}"
     reset()
   }
-return
+  return
+}
 
 ; save buffer or forward search
 ^s::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    send A_ThisHotkey
   }
   else
   {
     if (is_pre_x)
-      send ^s ; save buffer
+      Send "^s" ; save buffer
     else
-      send ^f ; forward search
+      Send "^f" ; forward search
     reset()
   }
-return
+  return
+}
 
 ; backward search?
 ^r::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    send A_ThisHotkey
   }
   else
   {
-    send ^f ; ?
+    Send "^f" ; ?
     reset()
   }
-return
+  return
+}
 
 ; kill region
 ^w::
+{ 
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    Send A_ThisHotkey
   }
   else
   {
-    send ^x
+    Send "^x"
     reset()
   }
-return
+  return
+}
 
 ; kill ring save (copy)
 !w::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    send A_ThisHotkey
   }
   else
   {
-    send ^c
+    Send "^c"
     reset()
   }
-return
+  return
+}
 
 ; yank
 ^y::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    Send A_ThisHotkey
   }
   else
   {
-    send ^v
+    Send "^v"
     reset()
   }
-return
+  return
+}
 
 ; undo
 ^/::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    send A_ThisHotkey
   }
   else
   {
-    send ^z
+    Send "^z"
     reset()
   }
-return
+  return
+}
 
 ; ctrl+space
 ^vk20::
+{
+  global is_pre_spc
   if (excluded())
   {
-    send {ctrl down}{space}{ctrl up}
+    Send "{Ctrl Down}{Space}{Ctrl Up}"
   }
   else
   {
-    pre_spc = is_pre_spc
+    pre_spc := is_pre_spc
     reset()
     if (pre_spc)
-      is_pre_spc = 0
+      is_pre_spc := 0
     else
-      is_pre_spc = 1
+      is_pre_spc := 1
   }
-return
+  return
+}
 
 ; ctrl+space
 ^@::
+{
+  global is_pre_spc
   if (excluded())
   {
-    send %A_ThisHotkey%
+    send A_ThisHotkey
   }
   else
   {
-    pre_spc = is_pre_spc
+    pre_spc := is_pre_spc
     reset()
     if (pre_spc)
-      is_pre_spc = 0
+      is_pre_spc := 0
     else
-      is_pre_spc = 1
+      is_pre_spc := 1
   }
-return
+  return
+}
 
 ; move beginning of line
 ^a::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    send A_ThisHotkey
   }
   else
   {
     if (is_pre_spc)
-      send +{home}
+      Send "+{Home}"
     else
-      send {home}
+      Send "{Home}"
     reset()
   }
-return
+  return
+}
 
 ; move end of line
 ^e::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    send A_ThisHotkey
   }
   else
   {
     if (is_pre_spc)
-      send +{end}
+      Send "+{End}"
     else
-      send {end}
+      Send "{End}"
     reset()
   }
-return
+  return
+}
 
 ; go to previous line
 ^p::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    Send A_ThisHotkey
   }
   else
   {
     if (is_pre_spc)
-      send +{up}
+      Send "+{Up}"
     else
-      send {up}
+      Send "{Up}"
     reset()
   }
-return
+  return
+}
 
 ; go to next line
 ^n::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    Send A_ThisHotkey
   }
   else
   {
     if (is_pre_spc)
-      send +{down}
+      Send "+{Down}"
     else
-      send {down}
+      Send "{Down}"
     reset()
   }
-return
+  return
+}
 
 ; backward char or previous tab in browsing
 ^j::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    Send A_ThisHotkey
   }
   else
   {
     if (is_browser() and is_pre_c)
-      send {ctrl down}{tab}{ctrl up}
+      Send "{Ctrl Down}{Tab}{Ctrl Up}"
     else if (is_pre_spc)
-      send +{left}
+      Send "+{Left}"
     else
-      send {left}
+      Send "{Left}"
     reset()
   }
-return
+  return
+}
 
 ; backward word
 !j::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotKey%
+    send A_ThisHotKey
   }
   else
   {
-    send {ctrl down}{left down}{left up}{ctrl up}
+    Send "{Ctrl Down}{Left Down}{Left Up}{Ctrl Up}"
     reset()
   }
-return
+  return
+}
 
 ; close tab in browsing
 k::
+{
+  global
   if (is_browser() and is_pre_c)
-    Send ^{f4}
+    Send "^{F4}"
   else
-    send %A_ThisHotkey%
+    Send A_ThisHotkey
   reset()
-return
+  return
+}
 
 ; undo recently closed tab in browsing
 u::
+{
+  global
   if (is_browser() and is_pre_c)
-    send {ctrl down}{shift down}t{shift up}{ctrl up}
+    Send "{Ctrl Down}{Shift Down}t{Shift Up}{Ctrl Up}"
   else
-    send %A_ThisHotkey%
+    Send A_ThisHotkey
   reset()
-return
+  return
+}
 
 ; scroll down
 ^v::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    Send A_ThisHotkey
   }
   else
   {
     if (is_pre_spc)
-      send +{pgdn}
+      Send "+{PgDn}"
     else
-      send {pgdn}
+      Send "{PgDn}"
     reset()
   }
-return
+  return
+}
 
 ; scroll up
 !v::
+{
+  global
   if (excluded())
   {
-    send %A_ThisHotkey%
+    Send A_ThisHotkey
   }
   else
   {
     if (is_pre_spc)
-      send +{pgup}
+      Send "+{PgUp}"
     else
-      send {pgup}
+      Send "{PgUp}"
     reset()
   }
-return
+  return
+}
 
 ; browser back
 j::
+{
+  global
   if (is_browser() and is_pre_c)
-    send !{left}
+    Send "!{Left}"
   else
-    send %A_ThisHotkey%
+    Send A_ThisHotkey
   reset()
-return
+  return
+}
 
 ; browser forward
 f::
+{
+  global
   if (is_browser() and is_pre_c)
-    send !{right}
+    Send "!{Right}"
   else
-    send %A_ThisHotkey%
+    Send A_ThisHotkey
   reset()
-return
+  return
+}
 
 ; browser reload
 r::
+{
+  global
   if (is_browser() and is_pre_c)
-    send {ctrl down}r{ctrl up}
+    Send "{Ctrl Down}R{Ctrl Up}"
   else
-    send %A_ThisHotkey%
+    Send A_ThisHotkey
   reset()
-return
+  return
+}
 
 ; ; disable in browser
 ; !o::
@@ -590,7 +688,11 @@ return
 ;; shortcuts
 
 ^!t::
-  Run, "wt.exe" ; Windows Terminal
+{
+  Run "wt.exe" ; Windows Terminal
+}
 
 ; \  -> _
 SC073::_
+{
+}
